@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const PHRASES = [
   "CONSTRUIM FOTBALUL ROMÂNESC.",
@@ -87,7 +88,7 @@ export default function ParallaxCallout({ onOpenModal }: { onOpenModal: () => vo
           onClick={onOpenModal}
           className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest text-ink transition-transform hover:scale-105"
         >
-          ÎNCEPE UN PROIECT <span>&#8599;</span>
+          ÎNCEPE UN PROIECT <ArrowUpRight size={14} strokeWidth={2.5} />
         </button>
       </div>
     </section>

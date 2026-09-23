@@ -1,23 +1,7 @@
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import type { Project } from "../data/projects";
-
-function useIsDesktop(breakpoint = 768) {
-  const [isDesktop, setIsDesktop] = useState(
-    () => typeof window !== "undefined" && window.innerWidth >= breakpoint
-  );
-
-  useEffect(() => {
-    const mq = window.matchMedia(`(min-width: ${breakpoint}px)`);
-    const update = () => setIsDesktop(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, [breakpoint]);
-
-  return isDesktop;
-}
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 function Tags({ tags }: { tags: string[] }) {
   return (
@@ -206,7 +190,7 @@ export default function CaseStudyModal({
   project: Project | null;
   onClose: () => void;
 }) {
-  const isDesktop = useIsDesktop();
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   return (
     <AnimatePresence>

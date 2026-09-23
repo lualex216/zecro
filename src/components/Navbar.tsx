@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Menu } from "lucide-react";
+import { ArrowUpRight, X, Menu } from "lucide-react";
 import Logo from "./Logo";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const LINKS = [
   { label: "DESPRE NOI", href: "#studio" },
@@ -15,12 +16,22 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("DESPRE NOI");
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Width alone can't tell an iPad Pro 12.9" in portrait (1024px) apart from
+  // an iPad mini in landscape (also 1024px) — requiring landscape too
+  // resolves that overlap, so tablets only get the inline nav when rotated.
+  const isDesktopNav = useMediaQuery(
+    "(min-width: 960px) and (orientation: landscape)"
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (isDesktopNav) setMobileOpen(false);
+  }, [isDesktopNav]);
 
   const handleNav = (label: string, href: string) => {
     setActive(label);
@@ -62,41 +73,45 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
           <Logo className="w-28 sm:w-32" />
         </a>
 
-        <nav className="hidden md:flex items-center gap-1 relative">
-          {LINKS.map((l) => (
+        {isDesktopNav ? (
+          <>
+            <nav className="flex items-center gap-1 relative">
+              {LINKS.map((l) => (
+                <button
+                  key={l.label}
+                  data-cursor="VEZI"
+                  onClick={() => handleNav(l.label, l.href)}
+                  className="relative px-4 py-2 font-mono text-xs font-bold tracking-widest uppercase text-white/80 hover:text-white transition-colors"
+                >
+                  {active === l.label && (
+                    <motion.span
+                      layoutId="activePill"
+                      className="absolute inset-0 rounded-full bg-white/10"
+                      transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{l.label}</span>
+                </button>
+              ))}
+            </nav>
+
             <button
-              key={l.label}
-              data-cursor="VEZI"
-              onClick={() => handleNav(l.label, l.href)}
-              className="relative px-4 py-2 font-mono text-xs font-bold tracking-widest uppercase text-white/80 hover:text-white transition-colors"
+              data-cursor="START"
+              onClick={onOpenModal}
+              className="inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 font-mono text-xs font-bold tracking-widest uppercase text-ink transition-transform hover:scale-105"
             >
-              {active === l.label && (
-                <motion.span
-                  layoutId="activePill"
-                  className="absolute inset-0 rounded-full bg-white/10"
-                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{l.label}</span>
+              ÎNCEPE UN PROIECT <ArrowUpRight size={14} strokeWidth={2.5} />
             </button>
-          ))}
-        </nav>
-
-        <button
-          data-cursor="START"
-          onClick={onOpenModal}
-          className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 font-mono text-xs font-bold tracking-widest uppercase text-ink transition-transform hover:scale-105"
-        >
-          ÎNCEPE UN PROIECT <span>&#8599;</span>
-        </button>
-
-        <button
-          className="md:hidden text-white"
-          onClick={() => setMobileOpen(true)}
-          aria-label="Open menu"
-        >
-          <Menu size={22} />
-        </button>
+          </>
+        ) : (
+          <button
+            className="text-white"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open menu"
+          >
+            <Menu size={22} />
+          </button>
+        )}
       </motion.div>
 
       <AnimatePresence>
@@ -105,7 +120,7 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex flex-col bg-obsidian px-6 py-6 md:hidden"
+            className="fixed inset-0 z-[60] flex flex-col bg-obsidian px-6 py-6"
           >
             <div className="flex items-center justify-between">
               <Logo className="w-32 text-white" />
@@ -132,9 +147,9 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
                 setMobileOpen(false);
                 onOpenModal();
               }}
-              className="mb-4 w-full rounded-full bg-accent px-5 py-4 font-mono text-xs font-bold tracking-widest uppercase text-ink"
+              className="mb-4 flex w-full items-center justify-center gap-1.5 rounded-full bg-accent px-5 py-4 font-mono text-xs font-bold tracking-widest uppercase text-ink"
             >
-              ÎNCEPE UN PROIECT &#8599;
+              ÎNCEPE UN PROIECT <ArrowUpRight size={14} strokeWidth={2.5} />
             </button>
           </motion.div>
         )}

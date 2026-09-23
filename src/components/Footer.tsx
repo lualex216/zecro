@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
 
 const PROJECT_TYPES = [
@@ -118,7 +119,7 @@ export default function Footer() {
                 data-cursor="TRIMITE"
                 className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-widest text-ink transition-transform hover:scale-105"
               >
-                Trimite mesajul <span>&#8599;</span>
+                Trimite mesajul <ArrowUpRight size={14} strokeWidth={2.5} />
               </button>
             </form>
           )}

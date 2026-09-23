@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 
 const BUDGETS = ["< 20K€", "20K€ — 50K€", "50K€ — 100K€", "100K€+"];
 const TYPES = ["Player Advisory", "Club Solutions", "Multi-Club Heritage", "Commercial"];
@@ -158,9 +158,9 @@ export default function ProjectModal({
                 <button
                   type="submit"
                   data-cursor="TRIMITE"
-                  className="mt-2 w-full rounded-full bg-accent py-4 font-mono text-xs font-bold uppercase tracking-widest text-ink transition-transform hover:scale-[1.02]"
+                  className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-full bg-accent py-4 font-mono text-xs font-bold uppercase tracking-widest text-ink transition-transform hover:scale-[1.02]"
                 >
-                  Trimite solicitarea &#8599;
+                  Trimite solicitarea <ArrowUpRight size={14} strokeWidth={2.5} />
                 </button>
               </form>
             )}

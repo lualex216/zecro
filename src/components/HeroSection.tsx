@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 
 export default function HeroSection() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
@@ -63,7 +64,11 @@ export default function HeroSection() {
               VEZI PORTOFOLIUL
             </span>
             <span className="h-px w-8 bg-white/40 group-hover:bg-accent transition-colors" />
-            <span className="group-hover:text-accent transition-colors">&#8595;</span>
+            <ArrowDown
+              size={14}
+              strokeWidth={2.5}
+              className="group-hover:text-accent transition-colors"
+            />
           </button>
         </div>
 
