@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects, type Project } from "../data/projects";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 function ProjectVisual({
   project,
@@ -74,6 +75,9 @@ export default function SelectedWork({
 }: {
   onOpen: (p: Project) => void;
 }) {
+  const showCaseStudyHint = useMediaQuery(
+    "(min-width: 960px) and (orientation: landscape)"
+  );
   const [activeIndex, setActiveIndex] = useState(0);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -181,9 +185,11 @@ export default function SelectedWork({
                 </div>
 
                 <div className="mt-10 flex items-center justify-between gap-4 border-t border-black/10 pt-6">
-                  <span className="hidden font-mono text-xs uppercase tracking-widest text-black/40 sm:block">
-                    Click pentru studiu de caz
-                  </span>
+                  {showCaseStudyHint && (
+                    <span className="font-mono text-xs uppercase tracking-widest text-black/40">
+                      Click pentru studiu de caz
+                    </span>
+                  )}
                   <button
                     data-cursor="VEZI PROIECTUL"
                     onClick={() => onOpen(p)}
