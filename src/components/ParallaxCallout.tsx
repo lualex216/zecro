@@ -72,9 +72,14 @@ export default function ParallaxCallout({ onOpenModal }: { onOpenModal: () => vo
       <div className="absolute inset-0 bg-black/60" />
 
       <div className="relative z-10 flex flex-col items-center gap-10 px-4 text-center">
-        <h2 className="min-h-[1.1em] max-w-5xl font-sans text-4xl font-bold uppercase leading-[0.95] tracking-tighter text-white sm:text-7xl md:text-[9vw]">
-          {typed}
-          <span className="animate-blink text-accent">|</span>
+        <h2
+          className="flex h-[3.15em] max-w-5xl items-end justify-center font-sans font-bold uppercase leading-[0.95] tracking-tighter text-white"
+          style={{ fontSize: "clamp(2.25rem, 6vw, 5.5rem)" }}
+        >
+          <span>
+            {typed}
+            <span className="animate-blink text-accent">|</span>
+          </span>
         </h2>
 
         <button
