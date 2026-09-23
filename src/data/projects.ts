@@ -22,31 +22,41 @@ export const projects: Project[] = [
     index: "01",
     client: "A.S.P.I.",
     title:
-      "Echipamente oficiale, identitate vizuală și consultanță administrativă pentru înscrierea în Liga 4.",
+      "De la Steaua Magică la A.S.P.I.: transformarea unui club de juniori într-o echipă înscrisă în Liga 4.",
     description:
-      "Un pachet integrat B2B care a combinat consultanța administrativă (înscrierea oficială a echipei în Liga 4 de către ZECRO) cu designul complet al echipamentelor de joc Adidas Teamwear 2026, integrarea sponsorilor și materiale digitale de prezentare.",
-    tags: ["Brand", "Creare Club & Identitate", "Brand & Comercial"],
+      "ZECRO a preluat moștenirea clubului de copii și juniori Steaua Magică din Iași și a transformat proiectul în A.S.P.I., o echipă nou-înscrisă în Liga 4, cu un plan de dezvoltare care include și susținerea unei academii de juniori.",
+    tags: ["Creare Club & Identitate", "Licențiere & Administrativ", "Academie de Juniori"],
     image: "/projects/aspi.png",
-    involvement: "PARTENERIAT ADMINISTRATIV & CREATIV",
+    involvement: "TRANSFORMARE CLUB & ÎNFIINȚARE ACADEMIE",
     phases: [
       {
-        title: "Înscriere oficială în Liga 4",
+        title: "De la Steaua Magică la A.S.P.I.",
         description:
-          "ZECRO a gestionat integral procesul administrativ de înscriere a echipei A.S.P.I. în Liga 4, de la dosarul de afiliere la relația cu forurile competente, asigurând conformitatea completă înainte de startul sezonului.",
+          "Moștenirea clubului de copii și juniori Steaua Magică din Iași a fost preluată și transformată de ZECRO într-o nouă identitate, A.S.P.I., păstrând nucleul de jucători tineri și extinzând viziunea către fotbalul de seniori.",
         items: [
-          "Dosar de afiliere & documentație FRF/AJF",
-          "Relație directă cu forul competent",
-          "Consultanță privind clasificarea competițională",
+          "Preluarea și rebranding-ul clubului Steaua Magică",
+          "Construirea unei identități vizuale noi",
+          "Continuitatea nucleului de juniori",
         ],
       },
       {
-        title: "Identitate vizuală & echipament de joc",
+        title: "Înscrierea oficială în Liga 4",
         description:
-          "Am proiectat identitatea vizuală completă a clubului și am coordonat producția echipamentului oficial de joc Adidas Teamwear 2026, integrând sponsorii și pregătind materialele digitale de prezentare pentru lansarea publică.",
+          "ZECRO a gestionat integral procesul administrativ de afiliere și înscriere a echipei A.S.P.I. în Liga 4, asigurând conformitatea completă cu cerințele FRF/AJF înainte de startul sezonului.",
         items: [
-          "Design complet echipament Adidas Teamwear 2026",
-          "Integrare vizuală sponsori",
-          "Materiale digitale de prezentare",
+          "Dosar de afiliere & documentație FRF/AJF",
+          "Relație directă cu forul competent",
+          "Conformitate administrativă completă",
+        ],
+      },
+      {
+        title: "Plan de dezvoltare: academie de juniori",
+        description:
+          "Dincolo de echipa de seniori, proiectul include planuri de susținere a unei academii de copii și juniori, continuând moștenirea Steaua Magică și asigurând un flux constant de tinere talente.",
+        items: [
+          "Plan de înființare academie de juniori",
+          "Continuarea dezvoltării tinerelor talente",
+          "Structură multi-nivel: juniori → seniori",
         ],
       },
     ],
@@ -90,9 +100,9 @@ export const projects: Project[] = [
     index: "03",
     client: "Gloria Ultra",
     title:
-      "Construirea unui club de la zero: identitate de brand, structură organizațională și management executiv complet.",
+      "Management executiv complet pentru un club aflat la început de drum, până la decizia finanțatorilor de a schimba direcția.",
     description:
-      "ZECRO a preluat proiectul din faza incipientă, construind identitatea de brand, structura organizațională și fluxurile administrative necesare, alături de un management executiv complet pentru primele etape de dezvoltare ale clubului.",
+      "ZECRO a preluat proiectul într-o fază incipientă, construind identitatea de brand, structura organizațională și fluxurile administrative necesare unui management executiv complet. Colaborarea s-a încheiat atunci când finanțatorii clubului au decis reorientarea proiectului către mini-fotbal.",
     tags: ["Management Executiv Complet", "Creare Club & Identitate", "Brand & Comercial"],
     image: "/projects/gloria-ultra.png",
     involvement: "MANAGEMENT EXECUTIV COMPLET",
@@ -110,11 +120,21 @@ export const projects: Project[] = [
       {
         title: "Brand și management executiv",
         description:
-          "Am creat identitatea de brand a clubului și am preluat managementul executiv complet în primele etape de dezvoltare, ghidând proiectul de la concept la realitate competițională.",
+          "Am creat identitatea de brand a clubului și am preluat managementul executiv complet, ghidând proiectul de la concept la realitate competițională.",
         items: [
           "Identitate de brand completă",
           "Management executiv complet",
           "Ghidare strategică în etapele inițiale",
+        ],
+      },
+      {
+        title: "Reorientare spre mini-fotbal",
+        description:
+          "După o perioadă de management executiv complet, finanțatorii clubului au decis schimbarea direcției proiectului către mini-fotbal, marcând finalul acestei etape de colaborare — o decizie a proprietarilor clubului, nu a managementului ZECRO.",
+        items: [
+          "Decizie a finanțatorilor de reorientare spre mini-fotbal",
+          "Tranziție transparentă a managementului",
+          "Lecții aplicate în proiectele multi-club ulterioare",
         ],
       },
     ],

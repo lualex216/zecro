@@ -50,9 +50,9 @@ export default function HeroSection() {
           <div className="flex items-start gap-4">
             <div className="h-12 w-1 shrink-0 rounded-full bg-white sm:h-16" />
             <p className="font-sans text-base leading-snug text-white/85 sm:text-lg">
-              Agenție de management sportiv care construiește
+              Alături de fotbalul românesc
               <br />
-              viitorul fotbalului românesc.
+              spre un viitor mai bun.
             </p>
           </div>
           <button
