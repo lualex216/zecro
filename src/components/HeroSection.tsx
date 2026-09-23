@@ -43,7 +43,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/85" />
       <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent" />
 
-      <div className="relative z-10 flex h-full min-w-0 flex-col justify-between px-4 pt-28 pb-6 sm:px-8 sm:pt-32 sm:pb-8 lg:px-12">
+      <div className="relative z-10 mx-auto flex h-full w-full min-w-0 max-w-[1720px] flex-col justify-between px-4 pt-28 pb-6 sm:px-8 sm:pt-32 sm:pb-8 lg:px-12">
         {/* Top statement block */}
         <div className="max-w-xl mt-10 sm:mt-16">
           <div className="flex items-start gap-4">
@@ -79,12 +79,14 @@ export default function HeroSection() {
             </span>
           </div>
 
-          <h1
-            ref={headlineRef}
-            className="select-none whitespace-nowrap font-sans text-[13vw] font-extrabold uppercase leading-none tracking-tighter text-white drop-shadow-[0_0_45px_rgba(202,240,119,0.3)]"
-          >
-            MANAGEMENT SPORTIV
-          </h1>
+          <div className="min-w-0">
+            <h1
+              ref={headlineRef}
+              className="inline-block select-none whitespace-nowrap font-sans text-[13vw] font-extrabold uppercase leading-none tracking-tighter text-white drop-shadow-[0_0_45px_rgba(202,240,119,0.3)]"
+            >
+              MANAGEMENT SPORTIV
+            </h1>
+          </div>
         </div>
       </div>
     </section>
