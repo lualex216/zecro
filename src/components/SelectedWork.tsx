@@ -3,7 +3,13 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { projects, type Project } from "../data/projects";
 
-function ProjectVisual({ project }: { project: Project }) {
+function ProjectVisual({
+  project,
+  onOpen,
+}: {
+  project: Project;
+  onOpen: (p: Project) => void;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
@@ -33,6 +39,8 @@ function ProjectVisual({ project }: { project: Project }) {
         ref={ref}
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
+        onClick={() => onOpen(project)}
+        data-cursor="VEZI PROIECTUL"
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl bg-card-1"
       >
@@ -104,6 +112,7 @@ export default function SelectedWork({
   return (
     <section
       id="work"
+      data-cursor-bg="light"
       className="relative w-full bg-bone px-4 pb-24 text-[#0F1012] sm:px-8 lg:px-12"
     >
       <div className="mx-auto max-w-[1400px]">
@@ -139,7 +148,7 @@ export default function SelectedWork({
               }`}
             >
               <div className="md:w-1/2">
-                <ProjectVisual project={p} />
+                <ProjectVisual project={p} onOpen={onOpen} />
               </div>
 
               <div className="md:w-1/2">

@@ -44,6 +44,7 @@ export default function StudioStatement() {
     <section
       id="studio"
       ref={sectionRef}
+      data-cursor-bg="light"
       className="relative w-full bg-bone px-4 py-24 text-[#0F1012] sm:px-8 sm:py-32 lg:px-12"
     >
       <div className="mx-auto max-w-[1400px]">
