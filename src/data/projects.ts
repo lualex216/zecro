@@ -1,7 +1,12 @@
-export type ProjectPhase = {
-  title: string;
+export type ProjectPillar = {
+  heading: string;
   description: string;
   items: string[];
+};
+
+export type ProjectResults = {
+  description: string;
+  highlights: string[];
 };
 
 export type Project = {
@@ -13,7 +18,11 @@ export type Project = {
   tags: string[];
   image: string;
   involvement: string;
-  phases: ProjectPhase[];
+  context: string;
+  administrativePillar: ProjectPillar;
+  brandingPillar: ProjectPillar;
+  gallery: string[];
+  results: ProjectResults;
 };
 
 export const projects: Project[] = [
@@ -28,38 +37,38 @@ export const projects: Project[] = [
     tags: ["Creare Club & Identitate", "Licențiere & Administrativ", "Academie de Juniori"],
     image: "/projects/aspi.png",
     involvement: "TRANSFORMARE CLUB & ÎNFIINȚARE ACADEMIE",
-    phases: [
-      {
-        title: "De la Steaua Magică la A.S.P.I.",
-        description:
-          "Moștenirea clubului de copii și juniori Steaua Magică din Iași a fost preluată și transformată de ZECRO într-o nouă identitate, A.S.P.I., păstrând nucleul de jucători tineri și extinzând viziunea către fotbalul de seniori.",
-        items: [
-          "Preluarea și rebranding-ul clubului Steaua Magică",
-          "Construirea unei identități vizuale noi",
-          "Continuitatea nucleului de juniori",
-        ],
-      },
-      {
-        title: "Înscrierea oficială în Liga 4",
-        description:
-          "ZECRO a gestionat integral procesul administrativ de afiliere și înscriere a echipei A.S.P.I. în Liga 4, asigurând conformitatea completă cu cerințele FRF/AJF înainte de startul sezonului.",
-        items: [
-          "Dosar de afiliere & documentație FRF/AJF",
-          "Relație directă cu forul competent",
-          "Conformitate administrativă completă",
-        ],
-      },
-      {
-        title: "Plan de dezvoltare: academie de juniori",
-        description:
-          "Dincolo de echipa de seniori, proiectul include planuri de susținere a unei academii de copii și juniori, continuând moștenirea Steaua Magică și asigurând un flux constant de tinere talente.",
-        items: [
-          "Plan de înființare academie de juniori",
-          "Continuarea dezvoltării tinerelor talente",
-          "Structură multi-nivel: juniori → seniori",
-        ],
-      },
-    ],
+    context:
+      "Fotbalul de juniori din Iași avea nevoie de o structură administrativă nouă — capabilă să transforme un nucleu existent de copii și juniori într-un proiect cu perspectivă de competiție profesionistă, fără moștenirea birocratică a unui club vechi.",
+    administrativePillar: {
+      heading: "Structură nouă, conformitate completă",
+      description:
+        "ZECRO a gestionat integral tranziția de la un club de juniori la o structură competițională completă, cu accent pe conformitate administrativă și sustenabilitate financiară.",
+      items: [
+        "Preluarea și transformarea clubului de juniori Steaua Magică (Iași)",
+        "Dosar de afiliere & înscriere oficială în Liga 4",
+        "Structură de finanțare din surse multiple, fără dependență de un singur susținător",
+      ],
+    },
+    brandingPillar: {
+      heading: "Disciplină, eleganță și moștenire",
+      description:
+        "Identitatea A.S.P.I. a fost construită în jurul disciplinei și eleganței clasice, cu o paletă cromatică distinctă și un ton de comunicare direct și onest.",
+      items: [
+        "Arhetip de brand: Înțeleptul Atletic — eleganță clasică, disciplină, rol de mentorat",
+        "Paletă cromatică: albastru profund, negru, crem și accent auriu",
+        "Echipament oficial de joc și materiale de prezentare pregătite pentru lansarea publică",
+      ],
+    },
+    gallery: [],
+    results: {
+      description:
+        "Colaborarea a pus bazele unei identități de club complet noi, cu rădăcini în comunitatea de juniori din Iași.",
+      highlights: [
+        "Înscriere oficială reușită în Liga 4",
+        "Identitate de brand completă, gata de lansare publică",
+        "Plan clar de extindere către o academie de juniori",
+      ],
+    },
   },
   {
     id: "cetatea-suceava",
@@ -72,28 +81,38 @@ export const projects: Project[] = [
     tags: ["Revitalizare Brand Istoric", "Management Strategic", "Strategie Social Media"],
     image: "/projects/cetatea-suceava.png",
     involvement: "MANAGEMENT STRATEGIC CONTINUU",
-    phases: [
-      {
-        title: "Redesenarea identității istorice",
-        description:
-          "Am regândit sigla și elementele vizuale ale clubului istoric, păstrând simbolistica originală și adaptând-o standardelor moderne de brand, pentru a reconecta suporterii cu identitatea clubului.",
-        items: [
-          "Redesign logo & elemente heraldice",
-          "Ghid de identitate vizuală",
-          "Asistență comunicare & social media",
-        ],
-      },
-      {
-        title: "Management strategic în conducerea clubului",
-        description:
-          "Dincolo de brand, ZECRO face parte activă din conducerea clubului, oferind sprijin strategic continuu pentru deciziile administrative și de dezvoltare pe termen lung.",
-        items: [
-          "Poziție activă în conducerea clubului",
-          "Planificare strategică pe termen lung",
-          "Suport administrativ continuu",
-        ],
-      },
-    ],
+    context:
+      "Un brand istoric al fotbalului din Bucovina, cu identitate puternică în comunitate, dar cu nevoie de restructurare vizuală și de guvernanță strategică pentru a rămâne relevant și competitiv în Liga 3.",
+    administrativePillar: {
+      heading: "Stabilitate sportivă și guvernanță continuă",
+      description:
+        "ZECRO asigură managementul strategic continuu al clubului, cu accent pe stabilitate sportivă și administrativă în vederea participării constante în play-off-ul de promovare.",
+      items: [
+        "Poziție activă în conducerea clubului",
+        "Managementul meciurilor de pe teren propriu (Stadionul „Areni”) ca punct de adunare comunitar",
+        "Planificare strategică pe termen lung, conectată la rețeaua multi-club ZECRO",
+      ],
+    },
+    brandingPillar: {
+      heading: "Moștenirea Cetății, reconectată",
+      description:
+        "Identitatea vizuală reconectează suporterii cu simbolistica istorică a Cetății de Scaun a Sucevei, adaptată standardelor moderne de brand și cerințelor oficiale FRF pentru Liga 3.",
+      items: [
+        "Redesign logo & elemente heraldice",
+        "Paletă cromatică: albastru marin, albastru regal, alb, cu accente roșu/galben conform manualului Ligii 3",
+        "Materiale oficiale de meci: panouri interviu, badge-uri de acces, bilete, afișe de promovare",
+      ],
+    },
+    gallery: [],
+    results: {
+      description:
+        "Rezultatul e un brand istoric reconectat cu suporterii săi și o guvernanță strategică stabilă în cadrul conducerii clubului.",
+      highlights: [
+        "Participare constantă în play-off-ul de promovare din Liga 3",
+        "Identitate vizuală reconectată cu tradiția Cetății Sucevei",
+        "Stadionul „Areni” consolidat ca punct de adunare comunitar",
+      ],
+    },
   },
   {
     id: "gloria-ultra",
@@ -106,37 +125,37 @@ export const projects: Project[] = [
     tags: ["Management Executiv Complet", "Creare Club & Identitate", "Brand & Comercial"],
     image: "/projects/gloria-ultra.png",
     involvement: "MANAGEMENT EXECUTIV COMPLET",
-    phases: [
-      {
-        title: "Structură organizațională de la zero",
-        description:
-          "Am construit fluxurile administrative și structura organizațională necesare funcționării clubului încă din prima zi, punând bazele unui management profesionist.",
-        items: [
-          "Structură organizațională & roluri",
-          "Fluxuri administrative de la zero",
-          "Conformitate & documentație inițială",
-        ],
-      },
-      {
-        title: "Brand și management executiv",
-        description:
-          "Am creat identitatea de brand a clubului și am preluat managementul executiv complet, ghidând proiectul de la concept la realitate competițională.",
-        items: [
-          "Identitate de brand completă",
-          "Management executiv complet",
-          "Ghidare strategică în etapele inițiale",
-        ],
-      },
-      {
-        title: "Reorientare spre mini-fotbal",
-        description:
-          "După o perioadă de management executiv complet, finanțatorii clubului au decis schimbarea direcției proiectului către mini-fotbal, marcând finalul acestei etape de colaborare — o decizie a proprietarilor clubului, nu a managementului ZECRO.",
-        items: [
-          "Decizie a finanțatorilor de reorientare spre mini-fotbal",
-          "Tranziție transparentă a managementului",
-          "Lecții aplicate în proiectele multi-club ulterioare",
-        ],
-      },
-    ],
+    context:
+      "Proiectul și-a propus să testeze metode moderne de administrare și guvernanță pentru un club de fotbal, gestionat direct de fondatorii ZECRO, până când finanțatorii clubului au decis o schimbare de direcție.",
+    administrativePillar: {
+      heading: "Management executiv, de la zero",
+      description:
+        "ZECRO a preluat managementul executiv complet al clubului, construind de la zero structura organizațională și fluxurile administrative necesare, într-un proiect-pilot pentru metode moderne de administrare.",
+      items: [
+        "Structură organizațională & fluxuri administrative de la zero",
+        "Management executiv complet, condus direct de fondatorii ZECRO",
+        "Colaborarea s-a încheiat odată cu decizia finanțatorilor de reorientare spre mini-fotbal",
+      ],
+    },
+    brandingPillar: {
+      heading: "Păunul: eleganță și regenerare",
+      description:
+        "Identitatea de brand a fost construită în jurul Păunului — simbol al eleganței, mândriei și regenerării — cu un ton de comunicare prietenos și aproape de suporteri.",
+      items: [
+        "Mascotă & simbol central: Păunul (#PăuniiÎnZbor)",
+        "Paletă cromatică: albastru (încredere), roșu (pasiune), alb (integritate)",
+        "Echipament oficial de joc și materiale de prezentare pentru lansarea publică",
+      ],
+    },
+    gallery: [],
+    results: {
+      description:
+        "Deși colaborarea s-a încheiat odată cu reorientarea clubului spre mini-fotbal, proiectul a pus bazele unei identități de brand complete și a rafinat metodologia ZECRO pentru managementul executiv al proiectelor multi-club.",
+      highlights: [
+        "Identitate de brand completă, de la structură organizațională la simbolistică",
+        "Experiență directă în managementul executiv complet al unui club",
+        "Lecții aplicate ulterior în proiectele multi-club ZECRO",
+      ],
+    },
   },
 ];
