@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
 
 const PROJECT_TYPES = [
+  "One Task Only",
   "Player Advisory",
   "Club Solutions",
   "Multi-Club Heritage",
@@ -91,7 +92,7 @@ export default function Footer() {
                   Tip solicitare
                 </label>
                 <select
-                  defaultValue={PROJECT_TYPES[0]}
+                  defaultValue="One Task Only"
                   className="border-b border-white/20 bg-transparent py-2 text-white outline-none focus:border-accent [&>option]:bg-obsidian-3"
                 >
                   {PROJECT_TYPES.map((t) => (

@@ -7,7 +7,7 @@ const ITEMS = [
     category: "SERVICII",
     question: "Ce servicii oferă ZECRO?",
     answer:
-      "Oferim consiliere pentru jucători (player advisory), soluții administrative pentru cluburi, dezvoltare multi-club și parteneriate comerciale — o abordare integrată pentru fiecare etapă a carierei sportive.",
+      "Oferim soluții administrative pentru cluburi, dezvoltare multi-club, parteneriate comerciale și servicii punctuale — de la taskuri individuale la proiecte one-off —, precum și consiliere pentru jucători (player advisory).",
   },
   {
     category: "LICENȚIERE",
@@ -29,9 +29,9 @@ const ITEMS = [
   },
   {
     category: "DEZVOLTARE",
-    question: "Lucrați și cu jucători tineri, aflați la început de carieră?",
+    question: "Lucrați și cu jucători tineri sau cu cluburi aflate la început de drum?",
     answer:
-      "Da, susținem atât jucători consacrați, cât și tineri talentați, cu un plan de dezvoltare adaptat fiecărei etape.",
+      "Da. Susținem atât jucători consacrați, cât și tineri talentați, dar lucrăm și cu cluburi aflate la început de drum sau din ligile inferioare, inclusiv Liga 3, precum și cu cluburi profesioniste. Fiecare plan este adaptat nivelului, obiectivelor și etapei de dezvoltare.",
   },
 ];
 

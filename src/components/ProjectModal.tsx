@@ -2,8 +2,8 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 
-const BUDGETS = ["< 20K€", "20K€ — 50K€", "50K€ — 100K€", "100K€+"];
-const TYPES = ["Player Advisory", "Club Solutions", "Multi-Club Heritage", "Commercial"];
+const BUDGETS = ["< 10K€", "10K€ — 50K€", "50K€ — 100K€", "100K€+"];
+const TYPES = ["One Task Only", "Player Advisory", "Club Solutions", "Multi-Club Heritage", "Commercial"];
 
 export default function ProjectModal({
   open,
@@ -14,7 +14,7 @@ export default function ProjectModal({
 }) {
   const [submitted, setSubmitted] = useState(false);
   const [budget, setBudget] = useState(BUDGETS[1]);
-  const [type, setType] = useState(TYPES[0]);
+  const [type, setType] = useState("One Task Only");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -14,7 +14,7 @@ const LINKS = [
 
 export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("DESPRE NOI");
+  const [active, setActive] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
   // Width alone can't tell an iPad Pro 12.9" in portrait (1024px) apart from
   // an iPad mini in landscape (also 1024px) — requiring landscape too
@@ -32,6 +32,40 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
   useEffect(() => {
     if (isDesktopNav) setMobileOpen(false);
   }, [isDesktopNav]);
+
+  useEffect(() => {
+    const sections = LINKS.map((l) => ({
+      label: l.label,
+      el: document.querySelector(l.href) as HTMLElement | null,
+    }));
+    const NAV_OFFSET = 160;
+    let raf = 0;
+
+    const update = () => {
+      let current = "";
+      for (const s of sections) {
+        if (!s.el) continue;
+        if (s.el.getBoundingClientRect().top <= NAV_OFFSET) {
+          current = s.label;
+        }
+      }
+      setActive(current);
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
 
   const handleNav = (label: string, href: string) => {
     setActive(label);
