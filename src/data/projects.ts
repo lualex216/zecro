@@ -9,6 +9,10 @@ export type ProjectResults = {
   highlights: string[];
 };
 
+export type GalleryItem =
+  | { type: "wide"; src: string }
+  | { type: "squares"; srcs: [string, string, string] };
+
 export type Project = {
   id: string;
   index: string;
@@ -21,7 +25,7 @@ export type Project = {
   context: string;
   administrativePillar: ProjectPillar;
   brandingPillar: ProjectPillar;
-  gallery: string[];
+  gallery: GalleryItem[];
   results: ProjectResults;
 };
 
@@ -59,7 +63,27 @@ export const projects: Project[] = [
         "Echipament oficial de joc și materiale de prezentare pregătite pentru lansarea publică",
       ],
     },
-    gallery: [],
+    gallery: [
+      { type: "wide", src: "/projects/aspi/sigla-aspi.jpg" },
+      { type: "wide", src: "/projects/aspi/identitate-vizuala-aspi.jpg" },
+      { type: "wide", src: "/projects/aspi/social-media-aspi.jpg" },
+      {
+        type: "squares",
+        srcs: [
+          "/projects/aspi/esarfa-aspi.jpg",
+          "/projects/aspi/sapca-aspi.jpg",
+          "/projects/aspi/hanorac-aspi.jpg",
+        ],
+      },
+      {
+        type: "squares",
+        srcs: [
+          "/projects/aspi/steag-aspi.jpg",
+          "/projects/aspi/tricou-aspi.jpg",
+          "/projects/aspi/fanion-aspi.jpg",
+        ],
+      },
+    ],
     results: {
       description:
         "Colaborarea a pus bazele unei identități de club complet noi, cu rădăcini în comunitatea de juniori din Iași.",
@@ -103,7 +127,20 @@ export const projects: Project[] = [
         "Materiale oficiale de meci: panouri interviu, badge-uri de acces, bilete, afișe de promovare",
       ],
     },
-    gallery: [],
+    gallery: [
+      { type: "wide", src: "/projects/cetatea-suceava/rebranding-sigla-cetatea-suceava.jpg" },
+      { type: "wide", src: "/projects/cetatea-suceava/identitate-vizuala-cetatea-suceava.jpg" },
+      { type: "wide", src: "/projects/cetatea-suceava/social-media-cetatea-suceava.jpg" },
+      { type: "wide", src: "/projects/cetatea-suceava/afis-bilete-cetatea-suceava.jpg" },
+      {
+        type: "squares",
+        srcs: [
+          "/projects/cetatea-suceava/esarfa-cetatea-suceava.jpg",
+          "/projects/cetatea-suceava/sapca-cetatea-suceava.jpg",
+          "/projects/cetatea-suceava/backdrop-conferinta-cetatea-suceava.jpg",
+        ],
+      },
+    ],
     results: {
       description:
         "Rezultatul e un brand istoric reconectat cu suporterii săi și o guvernanță strategică stabilă în cadrul conducerii clubului.",
@@ -147,7 +184,28 @@ export const projects: Project[] = [
         "Echipament oficial de joc și materiale de prezentare pentru lansarea publică",
       ],
     },
-    gallery: [],
+    gallery: [
+      { type: "wide", src: "/projects/gloria-ultra/mascota-paun-gloria-ultra.jpg" },
+      { type: "wide", src: "/projects/gloria-ultra/identitate-vizuala-gloria-ultra.jpg" },
+      { type: "wide", src: "/projects/gloria-ultra/social-media-gloria-ultra.jpg" },
+      { type: "wide", src: "/projects/gloria-ultra/afis-meci-gloria-ultra.jpg" },
+      {
+        type: "squares",
+        srcs: [
+          "/projects/gloria-ultra/esarfa-gloria-ultra.jpg",
+          "/projects/gloria-ultra/caciula-gloria-ultra.jpg",
+          "/projects/gloria-ultra/papetarie-gloria-ultra.jpg",
+        ],
+      },
+      {
+        type: "squares",
+        srcs: [
+          "/projects/gloria-ultra/backdrop-sponsori-gloria-ultra.jpg",
+          "/projects/gloria-ultra/tricou-mascota-gloria-ultra.jpg",
+          "/projects/gloria-ultra/autocar-gloria-ultra.jpg",
+        ],
+      },
+    ],
     results: {
       description:
         "Deși colaborarea s-a încheiat odată cu reorientarea clubului spre mini-fotbal, proiectul a pus bazele unei identități de brand complete și a rafinat metodologia ZECRO pentru managementul executiv al proiectelor multi-club.",

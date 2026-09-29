@@ -34,6 +34,15 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
   }, [isDesktopNav]);
 
   useEffect(() => {
+    if (!mobileOpen) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [mobileOpen]);
+
+  useEffect(() => {
     const sections = LINKS.map((l) => ({
       label: l.label,
       el: document.querySelector(l.href) as HTMLElement | null,
@@ -154,7 +163,7 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex flex-col bg-obsidian px-6 py-6"
+            className="fixed inset-0 z-[60] flex h-[100dvh] flex-col bg-obsidian px-6 py-6"
           >
             <div className="flex items-center justify-between">
               <Logo className="w-32 text-white" />
