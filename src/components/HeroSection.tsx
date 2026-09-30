@@ -34,9 +34,13 @@ export default function HeroSection() {
       id="top"
       className="relative flex h-[100svh] min-h-[640px] w-full flex-col overflow-hidden bg-obsidian"
     >
-      <motion.img
-        src="/hero.jpg"
-        alt=""
+      <motion.video
+        src="/hero.mp4"
+        poster="/hero.jpg"
+        autoPlay
+        muted
+        loop
+        playsInline
         className="absolute inset-0 h-full w-full object-cover"
         animate={{ scale: [1, 1.12, 1] }}
         transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
