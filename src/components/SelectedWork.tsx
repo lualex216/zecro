@@ -49,7 +49,8 @@ function ProjectVisual({
           <img
             className="h-full w-full object-cover"
             src={project.image}
-            alt={project.client}
+            alt={`${project.client} — copertă proiect ZECRO`}
+            loading="lazy"
           />
         </motion.div>
 

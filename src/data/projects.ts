@@ -9,9 +9,11 @@ export type ProjectResults = {
   highlights: string[];
 };
 
+export type GalleryImage = { src: string; alt: string };
+
 export type GalleryItem =
-  | { type: "wide"; src: string }
-  | { type: "squares"; srcs: [string, string, string] };
+  | { type: "wide"; image: GalleryImage }
+  | { type: "squares"; images: [GalleryImage, GalleryImage, GalleryImage] };
 
 export type Project = {
   id: string;
@@ -64,23 +66,38 @@ export const projects: Project[] = [
       ],
     },
     gallery: [
-      { type: "wide", src: "/projects/aspi/sigla-aspi.jpg" },
-      { type: "wide", src: "/projects/aspi/identitate-vizuala-aspi.jpg" },
-      { type: "wide", src: "/projects/aspi/social-media-aspi.jpg" },
+      {
+        type: "wide",
+        image: { src: "/projects/aspi/sigla-aspi.jpg", alt: "Sigla A.S.P.I. pe fundal albastru" },
+      },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/aspi/identitate-vizuala-aspi.jpg",
+          alt: "Moodboard de identitate vizuală A.S.P.I.: siglă, wordmark, paletă cromatică și tipografie",
+        },
+      },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/aspi/social-media-aspi.jpg",
+          alt: "Mockup de postări social media pentru A.S.P.I.",
+        },
+      },
       {
         type: "squares",
-        srcs: [
-          "/projects/aspi/esarfa-aspi.jpg",
-          "/projects/aspi/sapca-aspi.jpg",
-          "/projects/aspi/hanorac-aspi.jpg",
+        images: [
+          { src: "/projects/aspi/esarfa-aspi.jpg", alt: "Eșarfă oficială A.S.P.I. 1945" },
+          { src: "/projects/aspi/sapca-aspi.jpg", alt: "Șapcă oficială A.S.P.I." },
+          { src: "/projects/aspi/hanorac-aspi.jpg", alt: "Hanorac oficial A.S.P.I. 1945" },
         ],
       },
       {
         type: "squares",
-        srcs: [
-          "/projects/aspi/steag-aspi.jpg",
-          "/projects/aspi/tricou-aspi.jpg",
-          "/projects/aspi/fanion-aspi.jpg",
+        images: [
+          { src: "/projects/aspi/steag-aspi.jpg", alt: "Steag oficial A.S.P.I. 1945" },
+          { src: "/projects/aspi/tricou-aspi.jpg", alt: "Tricou oficial A.S.P.I. 1945" },
+          { src: "/projects/aspi/fanion-aspi.jpg", alt: "Fanion oficial A.S.P.I. 1945" },
         ],
       },
     ],
@@ -128,16 +145,49 @@ export const projects: Project[] = [
       ],
     },
     gallery: [
-      { type: "wide", src: "/projects/cetatea-suceava/rebranding-sigla-cetatea-suceava.jpg" },
-      { type: "wide", src: "/projects/cetatea-suceava/identitate-vizuala-cetatea-suceava.jpg" },
-      { type: "wide", src: "/projects/cetatea-suceava/social-media-cetatea-suceava.jpg" },
-      { type: "wide", src: "/projects/cetatea-suceava/afis-bilete-cetatea-suceava.jpg" },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/cetatea-suceava/rebranding-sigla-cetatea-suceava.jpg",
+          alt: "Rebranding siglă Cetatea Suceava: înainte și după",
+        },
+      },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/cetatea-suceava/identitate-vizuala-cetatea-suceava.jpg",
+          alt: "Moodboard de identitate vizuală Cetatea Suceava",
+        },
+      },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/cetatea-suceava/social-media-cetatea-suceava.jpg",
+          alt: "Mockup de postări social media pentru Cetatea Suceava",
+        },
+      },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/cetatea-suceava/afis-bilete-cetatea-suceava.jpg",
+          alt: "Afiș de meci și bilete Cetatea Suceava",
+        },
+      },
       {
         type: "squares",
-        srcs: [
-          "/projects/cetatea-suceava/esarfa-cetatea-suceava.jpg",
-          "/projects/cetatea-suceava/sapca-cetatea-suceava.jpg",
-          "/projects/cetatea-suceava/backdrop-conferinta-cetatea-suceava.jpg",
+        images: [
+          {
+            src: "/projects/cetatea-suceava/esarfa-cetatea-suceava.jpg",
+            alt: "Eșarfă oficială Cetatea Suceava",
+          },
+          {
+            src: "/projects/cetatea-suceava/sapca-cetatea-suceava.jpg",
+            alt: "Șapcă oficială Cetatea Suceava",
+          },
+          {
+            src: "/projects/cetatea-suceava/backdrop-conferinta-cetatea-suceava.jpg",
+            alt: "Backdrop de conferință de presă Cetatea Suceava",
+          },
         ],
       },
     ],
@@ -185,24 +235,57 @@ export const projects: Project[] = [
       ],
     },
     gallery: [
-      { type: "wide", src: "/projects/gloria-ultra/mascota-paun-gloria-ultra.jpg" },
-      { type: "wide", src: "/projects/gloria-ultra/identitate-vizuala-gloria-ultra.jpg" },
-      { type: "wide", src: "/projects/gloria-ultra/social-media-gloria-ultra.jpg" },
-      { type: "wide", src: "/projects/gloria-ultra/afis-meci-gloria-ultra.jpg" },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/gloria-ultra/mascota-paun-gloria-ultra.jpg",
+          alt: "Ilustrație mascotă Păunul, Gloria Ultra",
+        },
+      },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/gloria-ultra/identitate-vizuala-gloria-ultra.jpg",
+          alt: "Moodboard de identitate vizuală Gloria Ultra",
+        },
+      },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/gloria-ultra/social-media-gloria-ultra.jpg",
+          alt: "Mockup de postări social media pentru Gloria Ultra",
+        },
+      },
+      {
+        type: "wide",
+        image: {
+          src: "/projects/gloria-ultra/afis-meci-gloria-ultra.jpg",
+          alt: "Afiș meci Gloria Ultra vs ACS FC Bacău",
+        },
+      },
       {
         type: "squares",
-        srcs: [
-          "/projects/gloria-ultra/esarfa-gloria-ultra.jpg",
-          "/projects/gloria-ultra/caciula-gloria-ultra.jpg",
-          "/projects/gloria-ultra/papetarie-gloria-ultra.jpg",
+        images: [
+          { src: "/projects/gloria-ultra/esarfa-gloria-ultra.jpg", alt: "Eșarfă oficială Gloria Ultra" },
+          { src: "/projects/gloria-ultra/caciula-gloria-ultra.jpg", alt: "Căciulă oficială Gloria Ultra" },
+          {
+            src: "/projects/gloria-ultra/papetarie-gloria-ultra.jpg",
+            alt: "Papetărie și materiale de brand Gloria Ultra",
+          },
         ],
       },
       {
         type: "squares",
-        srcs: [
-          "/projects/gloria-ultra/backdrop-sponsori-gloria-ultra.jpg",
-          "/projects/gloria-ultra/tricou-mascota-gloria-ultra.jpg",
-          "/projects/gloria-ultra/autocar-gloria-ultra.jpg",
+        images: [
+          {
+            src: "/projects/gloria-ultra/backdrop-sponsori-gloria-ultra.jpg",
+            alt: "Backdrop de sponsori Gloria Ultra",
+          },
+          {
+            src: "/projects/gloria-ultra/tricou-mascota-gloria-ultra.jpg",
+            alt: "Tricou cu mascota Păunul, Gloria Ultra",
+          },
+          { src: "/projects/gloria-ultra/autocar-gloria-ultra.jpg", alt: "Autocar echipă Gloria Ultra" },
         ],
       },
     ],

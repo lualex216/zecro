@@ -69,13 +69,23 @@ function GallerySection({ items }: { items: Project["gallery"] }) {
           {items.map((item, i) =>
             item.type === "wide" ? (
               <div key={i} className="aspect-video overflow-hidden rounded-xl bg-black">
-                <img src={item.src} alt="" className="h-full w-full object-cover" />
+                <img
+                  src={item.image.src}
+                  alt={item.image.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
               </div>
             ) : (
               <div key={i} className="grid grid-cols-3 gap-4">
-                {item.srcs.map((src, j) => (
+                {item.images.map((image, j) => (
                   <div key={j} className="aspect-square overflow-hidden rounded-xl bg-black">
-                    <img src={src} alt="" className="h-full w-full object-cover" />
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 ))}
               </div>
@@ -183,7 +193,7 @@ function DesktopDialog({ project, onClose }: { project: Project; onClose: () => 
           </div>
 
           <div className="relative aspect-video w-full overflow-hidden bg-black">
-            <img className="h-full w-full object-cover" src={project.image} alt={project.client} />
+            <img className="h-full w-full object-cover" src={project.image} alt={`${project.client} — imagine principală studiu de caz`} loading="lazy" />
           </div>
 
           <div className="flex flex-col gap-8 p-6 sm:p-10">
@@ -232,7 +242,7 @@ function MobileDrawer({ project, onClose }: { project: Project; onClose: () => v
         </div>
 
         <div className="aspect-video w-full overflow-hidden bg-black">
-          <img className="h-full w-full object-cover" src={project.image} alt={project.client} />
+          <img className="h-full w-full object-cover" src={project.image} alt={`${project.client} — imagine principală studiu de caz`} loading="lazy" />
         </div>
 
         <div className="flex flex-col gap-8 px-6 py-8 sm:px-10 sm:py-12">
