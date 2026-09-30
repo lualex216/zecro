@@ -33,10 +33,10 @@ export default function Footer() {
               Ai un proiect în minte?
             </h2>
             <a
-              href="mailto:contact@zecro.ro"
+              href="mailto:contact@zec.ro"
               className="mt-8 inline-block border-b border-white/30 text-xl text-white transition-colors hover:border-accent hover:text-accent sm:text-2xl"
             >
-              contact@zecro.ro
+              contact@zec.ro
             </a>
           </div>
 
