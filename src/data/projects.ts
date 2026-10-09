@@ -37,14 +37,14 @@ export const projects: Project[] = [
     index: "01",
     client: "A.S.P.I.",
     title:
-      "De la Steaua Magică la A.S.P.I.: transformarea unui club de juniori într-o echipă înscrisă în Liga 4.",
+      "De la Steaua Magică la A.S.P.I.: un club nou, construit pe spiritul și tradiția Politehnicii Iași, înscris în Liga 4.",
     description:
-      "ZECRO a preluat moștenirea clubului de copii și juniori Steaua Magică din Iași și a transformat proiectul în A.S.P.I., o echipă nou-înscrisă în Liga 4, cu un plan de dezvoltare care include și susținerea unei academii de juniori.",
+      "ZECRO a preluat moștenirea clubului de copii și juniori Steaua Magică din Iași și a transformat proiectul în A.S.P.I.: un club nou, construit pe spiritul și tradiția Politehnicii Iași și înscris în Liga 4, cu un plan de dezvoltare care include și susținerea unei academii de juniori.",
     tags: ["Creare Club & Identitate", "Licențiere & Administrativ", "Academie de Juniori"],
     image: "/projects/aspi.png",
     involvement: "TRANSFORMARE CLUB & ÎNFIINȚARE ACADEMIE",
     context:
-      "Fotbalul de juniori din Iași avea nevoie de o structură administrativă nouă — capabilă să transforme un nucleu existent de copii și juniori într-un proiect cu perspectivă de competiție profesionistă, fără moștenirea birocratică a unui club vechi.",
+      "Fotbalul de juniori din Iași avea nevoie de o structură administrativă nouă — capabilă să transforme un nucleu existent de copii și juniori într-un proiect cu perspectivă de competiție profesionistă, fără moștenirea birocratică a unui club vechi, dar păstrând spiritul și tradiția Politehnicii Iași.",
     administrativePillar: {
       heading: "Structură nouă, conformitate completă",
       description:
@@ -58,7 +58,7 @@ export const projects: Project[] = [
     brandingPillar: {
       heading: "Disciplină, eleganță și moștenire",
       description:
-        "Identitatea A.S.P.I. a fost construită în jurul disciplinei și eleganței clasice, cu o paletă cromatică distinctă și un ton de comunicare direct și onest.",
+        "Identitatea A.S.P.I. pornește de la spiritul și tradiția Politehnicii Iași și este construită în jurul disciplinei și eleganței clasice, cu o paletă cromatică distinctă și un ton de comunicare direct și onest.",
       items: [
         "Arhetip de brand: Înțeleptul Atletic — eleganță clasică, disciplină, rol de mentorat",
         "Paletă cromatică: albastru profund, negru, crem și accent auriu",
@@ -114,11 +114,11 @@ export const projects: Project[] = [
   {
     id: "cetatea-suceava",
     index: "02",
-    client: "Cetatea Suceava",
+    client: "ACSM Cetatea 1932 Suceava",
     title:
       "Revitalizarea unui brand istoric: redesenarea identității vizuale, licențiere și management strategic.",
     description:
-      "Proiect din pilonul ZECRO Heritage axat pe protejarea și restaurarea patrimoniului sportiv. ZECRO a redesenat sigla clubului istoric, a oferit asistență pe comunicare și social media și asigură managementul strategic continuu în cadrul conducerii clubului.",
+      "Proiect din pilonul ZECRO Heritage axat pe protejarea și restaurarea patrimoniului sportiv. ZECRO a redesenat sigla ACSM Cetatea 1932 Suceava, a oferit asistență pe comunicare și social media și asigură managementul strategic continuu în cadrul conducerii clubului.",
     tags: ["Revitalizare Brand Istoric", "Management Strategic", "Strategie Social Media"],
     image: "/projects/cetatea-suceava.png",
     involvement: "MANAGEMENT STRATEGIC CONTINUU",
@@ -127,10 +127,10 @@ export const projects: Project[] = [
     administrativePillar: {
       heading: "Stabilitate sportivă și guvernanță continuă",
       description:
-        "ZECRO asigură managementul strategic continuu al clubului, cu accent pe stabilitate sportivă și administrativă în vederea participării constante în play-off-ul de promovare.",
+        "ZECRO asigură managementul strategic continuu al clubului, cu accent pe stabilitate sportivă și administrativă pe drumul către promovare.",
       items: [
         "Poziție activă în conducerea clubului",
-        "Managementul meciurilor de pe teren propriu (Stadionul „Areni”) ca punct de adunare comunitar",
+        "Managementul meciurilor de pe teren propriu, Stadionul „Areni”",
         "Planificare strategică pe termen lung, conectată la rețeaua multi-club ZECRO",
       ],
     },
@@ -149,28 +149,28 @@ export const projects: Project[] = [
         type: "wide",
         image: {
           src: "/projects/cetatea-suceava/rebranding-sigla-cetatea-suceava.jpg",
-          alt: "Rebranding siglă Cetatea Suceava: înainte și după",
+          alt: "Rebranding siglă ACSM Cetatea 1932 Suceava: înainte și după",
         },
       },
       {
         type: "wide",
         image: {
           src: "/projects/cetatea-suceava/identitate-vizuala-cetatea-suceava.jpg",
-          alt: "Moodboard de identitate vizuală Cetatea Suceava",
+          alt: "Moodboard de identitate vizuală ACSM Cetatea 1932 Suceava",
         },
       },
       {
         type: "wide",
         image: {
           src: "/projects/cetatea-suceava/social-media-cetatea-suceava.jpg",
-          alt: "Mockup de postări social media pentru Cetatea Suceava",
+          alt: "Mockup de postări social media pentru ACSM Cetatea 1932 Suceava",
         },
       },
       {
         type: "wide",
         image: {
           src: "/projects/cetatea-suceava/afis-bilete-cetatea-suceava.jpg",
-          alt: "Afiș de meci și bilete Cetatea Suceava",
+          alt: "Afiș de meci și bilete ACSM Cetatea 1932 Suceava",
         },
       },
       {
@@ -178,15 +178,15 @@ export const projects: Project[] = [
         images: [
           {
             src: "/projects/cetatea-suceava/esarfa-cetatea-suceava.jpg",
-            alt: "Eșarfă oficială Cetatea Suceava",
+            alt: "Eșarfă oficială ACSM Cetatea 1932 Suceava",
           },
           {
             src: "/projects/cetatea-suceava/sapca-cetatea-suceava.jpg",
-            alt: "Șapcă oficială Cetatea Suceava",
+            alt: "Șapcă oficială ACSM Cetatea 1932 Suceava",
           },
           {
             src: "/projects/cetatea-suceava/backdrop-conferinta-cetatea-suceava.jpg",
-            alt: "Backdrop de conferință de presă Cetatea Suceava",
+            alt: "Backdrop de conferință de presă ACSM Cetatea 1932 Suceava",
           },
         ],
       },
@@ -195,9 +195,8 @@ export const projects: Project[] = [
       description:
         "Rezultatul e un brand istoric reconectat cu suporterii săi și o guvernanță strategică stabilă în cadrul conducerii clubului.",
       highlights: [
-        "Participare constantă în play-off-ul de promovare din Liga 3",
+        "Promovare în Liga 2",
         "Identitate vizuală reconectată cu tradiția Cetății Sucevei",
-        "Stadionul „Areni” consolidat ca punct de adunare comunitar",
       ],
     },
   },
@@ -206,14 +205,14 @@ export const projects: Project[] = [
     index: "03",
     client: "Gloria Ultra",
     title:
-      "Management executiv complet pentru un club aflat la început de drum, până la decizia finanțatorilor de a schimba direcția.",
+      "Management executiv complet pentru un club la început de drum: structură organizațională, identitate de brand și administrare modernă.",
     description:
-      "ZECRO a preluat proiectul într-o fază incipientă, construind identitatea de brand, structura organizațională și fluxurile administrative necesare unui management executiv complet. Colaborarea s-a încheiat atunci când finanțatorii clubului au decis reorientarea proiectului către mini-fotbal.",
+      "ZECRO a preluat proiectul într-o fază incipientă și l-a condus direct, construind identitatea de brand, structura organizațională și fluxurile administrative ale clubului. Parcursul s-a încheiat când finanțatorii au reorientat clubul către mini-fotbal.",
     tags: ["Management Executiv Complet", "Creare Club & Identitate", "Brand & Comercial"],
     image: "/projects/gloria-ultra.png",
     involvement: "MANAGEMENT EXECUTIV COMPLET",
     context:
-      "Proiectul și-a propus să testeze metode moderne de administrare și guvernanță pentru un club de fotbal, gestionat direct de fondatorii ZECRO, până când finanțatorii clubului au decis o schimbare de direcție.",
+      "Proiectul și-a propus să testeze metode moderne de administrare și guvernanță pentru un club de fotbal, gestionat direct de fondatorii ZECRO.",
     administrativePillar: {
       heading: "Management executiv, de la zero",
       description:
@@ -221,7 +220,7 @@ export const projects: Project[] = [
       items: [
         "Structură organizațională & fluxuri administrative de la zero",
         "Management executiv complet, condus direct de fondatorii ZECRO",
-        "Colaborarea s-a încheiat odată cu decizia finanțatorilor de reorientare spre mini-fotbal",
+        "Metode moderne de administrare, testate direct într-un proiect-pilot",
       ],
     },
     brandingPillar: {
@@ -291,7 +290,7 @@ export const projects: Project[] = [
     ],
     results: {
       description:
-        "Deși colaborarea s-a încheiat odată cu reorientarea clubului spre mini-fotbal, proiectul a pus bazele unei identități de brand complete și a rafinat metodologia ZECRO pentru managementul executiv al proiectelor multi-club.",
+        "Proiectul a pus bazele unei identități de brand complete și a rafinat metodologia ZECRO pentru managementul executiv al proiectelor multi-club.",
       highlights: [
         "Identitate de brand completă, de la structură organizațională la simbolistică",
         "Experiență directă în managementul executiv complet al unui club",
