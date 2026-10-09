@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Mark from "./Mark";
+import CircleText from "./CircleText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,9 +98,12 @@ export default function StudioStatement() {
           {/* Middle column - brand mark */}
           <div className="flex flex-col items-center md:col-span-4">
             <div className="relative flex w-56 items-center justify-center sm:w-64 md:w-72 lg:w-80">
-              <div className="pointer-events-none absolute -inset-4 rounded-full border-4 border-dashed border-black/20 [animation:spin_30s_linear_infinite]" />
-              <div className="flex aspect-square w-full items-center justify-center rounded-full bg-obsidian">
-                <Mark className="w-2/5 text-accent" />
+              <CircleText
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 text-black/50 [animation:spin_30s_linear_infinite]"
+              />
+              <div className="flex aspect-square w-full items-center justify-center">
+                <Mark className="w-2/5 text-black/50" />
               </div>
             </div>
           </div>
