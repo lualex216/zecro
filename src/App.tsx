@@ -11,9 +11,11 @@ import ProjectModal from "./components/ProjectModal";
 import CaseStudyModal from "./components/CaseStudyModal";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
+import LegalPage from "./components/LegalPage";
+import { LEGAL_DOCUMENTS } from "./data/legal";
 import type { Project } from "./data/projects";
 
-export default function App() {
+function HomePage() {
   const [inquiryOpen, setInquiryOpen] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
@@ -38,4 +40,12 @@ export default function App() {
       <CaseStudyModal project={activeProject} onClose={() => setActiveProject(null)} />
     </div>
   );
+}
+
+const LEGAL_BY_PATH = Object.fromEntries(LEGAL_DOCUMENTS.map((d) => [d.path, d]));
+
+export default function App() {
+  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+  const legalDoc = LEGAL_BY_PATH[path];
+  return legalDoc ? <LegalPage doc={legalDoc} /> : <HomePage />;
 }

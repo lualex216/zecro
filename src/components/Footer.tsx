@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
+import { COMPANY } from "../data/company";
+import { LEGAL_DOCUMENTS } from "../data/legal";
 
 const PROJECT_TYPES = [
   "One Task Only",
@@ -33,10 +35,10 @@ export default function Footer() {
               Ai un proiect în minte?
             </h2>
             <a
-              href="mailto:contact@zec.ro"
+              href={`mailto:${COMPANY.email}`}
               className="mt-8 inline-block border-b border-white/30 text-xl text-white transition-colors hover:border-accent hover:text-accent sm:text-2xl"
             >
-              contact@zec.ro
+              {COMPANY.email}
             </a>
           </div>
 
@@ -164,8 +166,14 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col gap-2 border-t border-white/10 pt-6 font-mono text-[10px] font-bold uppercase tracking-widest text-white/30 sm:flex-row sm:items-center sm:justify-between sm:pr-14 lg:pr-10">
-          <span>&copy; 2026 ZECRO. All rights reserved.</span>
-          <span>INDEPENDENT / ROMÂNIA</span>
+          <span>&copy; 2026 {COMPANY.name} Toate drepturile rezervate.</span>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            {LEGAL_DOCUMENTS.map((d) => (
+              <a key={d.path} href={d.path} className="transition-colors hover:text-white">
+                {d.title}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
