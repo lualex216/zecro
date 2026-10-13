@@ -13,7 +13,7 @@ export default function ProjectModal({
   onClose: () => void;
 }) {
   const [submitted, setSubmitted] = useState(false);
-  const [budget, setBudget] = useState(BUDGETS[1]);
+  const [budget, setBudget] = useState(BUDGETS[0]);
   const [type, setType] = useState("One Task Only");
 
   const handleSubmit = (e: React.FormEvent) => {

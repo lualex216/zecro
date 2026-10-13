@@ -10,6 +10,7 @@ import ParallaxCallout from "./components/ParallaxCallout";
 import ProjectModal from "./components/ProjectModal";
 import CaseStudyModal from "./components/CaseStudyModal";
 import Footer from "./components/Footer";
+import BackToTop from "./components/BackToTop";
 import type { Project } from "./data/projects";
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <BackToTop />
 
       <ProjectModal open={inquiryOpen} onClose={() => setInquiryOpen(false)} />
       <CaseStudyModal project={activeProject} onClose={() => setActiveProject(null)} />

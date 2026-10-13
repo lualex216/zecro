@@ -163,7 +163,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-white/10 pt-6 font-mono text-[10px] font-bold uppercase tracking-widest text-white/30 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 border-t border-white/10 pt-6 font-mono text-[10px] font-bold uppercase tracking-widest text-white/30 sm:flex-row sm:items-center sm:justify-between sm:pr-14 lg:pr-10">
           <span>&copy; 2026 ZECRO. All rights reserved.</span>
           <span>INDEPENDENT / ROMÂNIA</span>
         </div>
