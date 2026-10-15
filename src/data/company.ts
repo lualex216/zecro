@@ -13,3 +13,8 @@ export const COMPANY = {
   anpc: "https://anpc.ro/",
   anspdcp: "https://www.dataprotection.ro",
 } as const;
+
+export const SOCIAL = [
+  { label: "Facebook", href: "https://facebook.com/zecro.agency" },
+  { label: "LinkedIn", href: "https://linkedin.com/company/zecro.agency" },
+] as const;

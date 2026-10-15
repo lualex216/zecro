@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
-import { COMPANY } from "../data/company";
+import { COMPANY, SOCIAL } from "../data/company";
 import { LEGAL_DOCUMENTS } from "../data/legal";
 
 const PROJECT_TYPES = [
@@ -159,8 +159,17 @@ export default function Footer() {
               <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/40">
                 Social
               </span>
-              <span className="text-sm text-white/70">Instagram</span>
-              <span className="text-sm text-white/70">LinkedIn</span>
+              {SOCIAL.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-white/70 hover:text-white"
+                >
+                  {s.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>
