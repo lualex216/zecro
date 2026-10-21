@@ -19,6 +19,7 @@ export type LegalDocument = {
 };
 
 const UPDATED = "13 octombrie 2026";
+const PRIVACY_UPDATED = "21 octombrie 2026";
 
 const IDENTIFICATION: string[] = [
   `Denumire: ${COMPANY.name}`,
@@ -38,7 +39,7 @@ export const PRIVACY: LegalDocument = {
   metaTitle: "Politica de confidențialitate — ZECRO",
   description:
     "Cum prelucrează ZECRO S.R.L. datele cu caracter personal transmise prin site-ul zec.ro: scopuri, temeiuri legale, durata păstrării și drepturile tale.",
-  updated: UPDATED,
+  updated: PRIVACY_UPDATED,
   intro:
     "Confidențialitatea datelor tale contează pentru noi. Această politică explică ce date personale prelucrăm prin site-ul zec.ro, de ce, cât timp le păstrăm și ce drepturi ai, în conformitate cu Regulamentul (UE) 2016/679 (GDPR) și cu legislația română aplicabilă.",
   related: { label: "Termeni și condiții", href: "/termeni-si-conditii" },
@@ -61,6 +62,7 @@ export const PRIVACY: LegalDocument = {
           "tipul solicitării și, în formularul „Începe un proiect”, intervalul de buget orientativ;",
           "conținutul mesajului tău și orice alte informații pe care alegi să ni le transmiți.",
         ],
+        `Mesajele trimise prin formulare ajung la noi pe e-mail (${COMPANY.email}), prin intermediul unui serviciu de transmitere a e-mailurilor (vezi „Cui transmitem datele”). Nu stocăm mesajele într-o bază de date pe site.`,
         "Date tehnice. Atunci când accesezi site-ul, serverul furnizorului de găzduire poate înregistra automat adresa IP, tipul de browser și momentul accesării. Aceste date sunt folosite pentru securitatea și buna funcționare a site-ului.",
         "Nu avem conturi de utilizator, nu procesăm plăți prin site și nu îți solicităm date sensibile. Te rugăm să nu ne transmiți date sensibile în mesaje.",
       ],
@@ -91,11 +93,11 @@ export const PRIVACY: LegalDocument = {
       blocks: [
         "Nu vindem și nu închiriem datele tale. Le putem transmite doar:",
         [
-          "furnizorilor de servicii care ne ajută să operăm site-ul și comunicările (găzduire — Vercel Inc., servicii de e-mail și infrastructură IT), pe baza unor contracte care îi obligă să protejeze datele;",
+          "furnizorilor de servicii care ne ajută să operăm site-ul și comunicările: găzduire (Vercel Inc.) și transmiterea e-mailurilor generate de formulare (Resend, Inc.), care acționează ca împuterniciți ai noștri, pe baza unor contracte care îi obligă să protejeze datele;",
           "contabililor, consultanților juridici și altor profesioniști supuși obligației de confidențialitate, când este necesar;",
           "autorităților publice, atunci când legea ne obligă.",
         ],
-        "Unii dintre furnizori (de exemplu Vercel sau Google) pot prelucra date în afara Spațiului Economic European. În aceste cazuri ne bazăm, după caz, pe Cadrul UE–SUA privind confidențialitatea datelor sau pe clauze contractuale standard aprobate de Comisia Europeană.",
+        "Unii dintre furnizori (de exemplu Vercel, Resend sau Google) pot prelucra date în afara Spațiului Economic European. În aceste cazuri ne bazăm, după caz, pe Cadrul UE–SUA privind confidențialitatea datelor sau pe clauze contractuale standard aprobate de Comisia Europeană.",
       ],
     },
     {
@@ -104,7 +106,7 @@ export const PRIVACY: LegalDocument = {
         [
           "Solicitările și mesajele care nu duc la un contract: cât timp este necesar pentru a le soluționa și, ulterior, cel mult 3 ani (termenul general de prescripție), după care datele sunt șterse sau anonimizate, dacă nu ne ceri ștergerea mai devreme;",
           "Datele din contracte și documentele contabile: pe durata prevăzută de lege (de exemplu, 10 ani pentru documentele justificative contabile);",
-          "Jurnalele serverului: pe perioada scurtă stabilită de furnizorul de găzduire.",
+          "Jurnalele serverului și ale serviciului de e-mail: pe perioada scurtă stabilită de furnizori.",
         ],
       ],
     },

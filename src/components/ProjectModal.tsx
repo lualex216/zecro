@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
+import { sendContact } from "../lib/sendContact";
 
 const BUDGETS = ["< 10K€", "10K€ — 50K€", "50K€ — 100K€", "100K€+"];
 const TYPES = ["One Task Only", "Player Advisory", "Club Solutions", "Multi-Club Heritage", "Commercial"];
@@ -16,14 +17,40 @@ export default function ProjectModal({
   const [budget, setBudget] = useState(BUDGETS[0]);
   const [type, setType] = useState("One Task Only");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (sending) return;
+    const data = new FormData(e.currentTarget);
+    const get = (k: string) => String(data.get(k) ?? "");
+    setSending(true);
+    setError(false);
+    try {
+      await sendContact({
+        kind: "project",
+        name: get("name"),
+        email: get("email"),
+        type,
+        budget,
+        message: get("message"),
+        website: get("website"),
+      });
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleClose = () => {
     onClose();
-    setTimeout(() => setSubmitted(false), 400);
+    setTimeout(() => {
+      setSubmitted(false);
+      setError(false);
+    }, 400);
   };
 
   useEffect(() => {
@@ -79,7 +106,7 @@ export default function ProjectModal({
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-10 flex flex-1 flex-col gap-8">
+              <form onSubmit={handleSubmit} className="relative mt-10 flex flex-1 flex-col gap-8">
                 <h2 className="font-sans text-3xl font-extrabold uppercase leading-none tracking-tight text-white sm:text-4xl">
                   Spune-ne despre viziunea ta.
                 </h2>
@@ -90,6 +117,8 @@ export default function ProjectModal({
                   </label>
                   <input
                     required
+                    name="name"
+                    maxLength={120}
                     type="text"
                     placeholder="Ion Popescu"
                     className="border-b border-white/20 bg-transparent py-2 text-white outline-none placeholder:text-white/30 focus:border-accent"
@@ -102,6 +131,8 @@ export default function ProjectModal({
                   </label>
                   <input
                     required
+                    name="email"
+                    maxLength={200}
                     type="email"
                     placeholder="ion@companie.ro"
                     className="border-b border-white/20 bg-transparent py-2 text-white outline-none placeholder:text-white/30 focus:border-accent"
@@ -158,18 +189,37 @@ export default function ProjectModal({
                   </label>
                   <textarea
                     required
+                    name="message"
+                    maxLength={5000}
                     rows={4}
                     placeholder="Spune-ne despre proiectul tău, termenul și obiectivele..."
                     className="resize-none border-b border-white/20 bg-transparent py-2 text-white outline-none placeholder:text-white/30 focus:border-accent"
                   />
                 </div>
 
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                />
+
+                {error && (
+                  <p role="alert" className="text-sm text-red-400">
+                    Solicitarea nu a putut fi trimisă. Încearcă din nou sau scrie-ne la office@zec.ro.
+                  </p>
+                )}
+
                 <button
                   type="submit"
+                  disabled={sending}
                   data-cursor="TRIMITE"
-                  className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-full bg-accent py-4 font-mono text-xs font-bold uppercase tracking-widest text-ink transition-transform hover:scale-[1.02]"
+                  className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-full bg-accent py-4 font-mono text-xs font-bold uppercase tracking-widest text-ink transition-transform hover:scale-[1.02] disabled:opacity-60 disabled:hover:scale-100"
                 >
-                  Trimite solicitarea <ArrowUpRight size={14} strokeWidth={2.5} />
+                  {sending ? "Se trimite..." : "Trimite solicitarea"}{" "}
+                  <ArrowUpRight size={14} strokeWidth={2.5} />
                 </button>
               </form>
             )}

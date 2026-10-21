@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
+import { sendContact } from "../lib/sendContact";
 import { COMPANY, SOCIAL } from "../data/company";
 import { LEGAL_DOCUMENTS } from "../data/legal";
 
@@ -14,10 +15,32 @@ const PROJECT_TYPES = [
 
 export default function Footer() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (sending) return;
+    const data = new FormData(e.currentTarget);
+    const get = (k: string) => String(data.get(k) ?? "");
+    setSending(true);
+    setError(false);
+    try {
+      await sendContact({
+        kind: "contact",
+        name: get("name"),
+        email: get("email"),
+        club: get("club"),
+        type: get("type"),
+        message: get("message"),
+        website: get("website"),
+      });
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -52,7 +75,7 @@ export default function Footer() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <form onSubmit={handleSubmit} className="relative flex flex-col gap-6">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div className="flex flex-col gap-2">
                   <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
@@ -60,6 +83,8 @@ export default function Footer() {
                   </label>
                   <input
                     required
+                    name="name"
+                    maxLength={120}
                     type="text"
                     placeholder="Ion Popescu"
                     className="border-b border-white/20 bg-transparent py-2 text-white outline-none placeholder:text-white/30 focus:border-accent"
@@ -71,6 +96,8 @@ export default function Footer() {
                   </label>
                   <input
                     required
+                    name="email"
+                    maxLength={200}
                     type="email"
                     placeholder="ion@companie.ro"
                     className="border-b border-white/20 bg-transparent py-2 text-white outline-none placeholder:text-white/30 focus:border-accent"
@@ -83,6 +110,8 @@ export default function Footer() {
                   Club / Organizație
                 </label>
                 <input
+                  name="club"
+                  maxLength={160}
                   type="text"
                   placeholder="Opțional"
                   className="border-b border-white/20 bg-transparent py-2 text-white outline-none placeholder:text-white/30 focus:border-accent"
@@ -94,6 +123,7 @@ export default function Footer() {
                   Tip solicitare
                 </label>
                 <select
+                  name="type"
                   defaultValue="One Task Only"
                   className="border-b border-white/20 bg-transparent py-2 text-white outline-none focus:border-accent [&>option]:bg-obsidian-3"
                 >
@@ -111,18 +141,41 @@ export default function Footer() {
                 </label>
                 <textarea
                   required
+                  name="message"
+                  maxLength={5000}
                   rows={3}
                   placeholder="Spune-ne despre proiectul tău și obiectivele urmărite..."
                   className="resize-none border-b border-white/20 bg-transparent py-2 text-white outline-none placeholder:text-white/30 focus:border-accent"
                 />
               </div>
 
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute -left-[9999px] h-0 w-0 opacity-0"
+              />
+
+              {error && (
+                <p role="alert" className="text-sm text-red-400">
+                  Mesajul nu a putut fi trimis. Încearcă din nou sau scrie-ne la{" "}
+                  <a href={`mailto:${COMPANY.email}`} className="underline">
+                    {COMPANY.email}
+                  </a>
+                  .
+                </p>
+              )}
+
               <button
                 type="submit"
+                disabled={sending}
                 data-cursor="TRIMITE"
-                className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-widest text-ink transition-transform hover:scale-105"
+                className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-widest text-ink transition-transform hover:scale-105 disabled:opacity-60 disabled:hover:scale-100"
               >
-                Trimite mesajul <ArrowUpRight size={14} strokeWidth={2.5} />
+                {sending ? "Se trimite..." : "Trimite mesajul"}{" "}
+                <ArrowUpRight size={14} strokeWidth={2.5} />
               </button>
             </form>
           )}

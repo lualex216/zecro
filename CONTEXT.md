@@ -1,6 +1,6 @@
 # ZECRO — Context Proiect
 
-Site web pentru **ZECRO**, agenție de management sportiv din România (fotbal). Construit de la zero pornind de la un spec generic de creative studio, apoi rebrandat complet și populat cu conținut real.
+Site web pentru **ZECRO S.R.L.**, agenție de management sportiv din România (fotbal). Construit de la zero pornind de la un spec generic de creative studio, apoi rebrandat complet și populat cu conținut real. Ultima actualizare a acestui document: 15 octombrie 2026.
 
 ## Stack tehnic
 
@@ -8,9 +8,11 @@ Site web pentru **ZECRO**, agenție de management sportiv din România (fotbal).
 - **Tailwind CSS v4** (`@tailwindcss/vite`, fără `tailwind.config.js` — totul e configurat în `src/index.css` via `@theme`)
 - **Framer Motion** — animații, scroll parallax, drawer-uri/dialog-uri
 - **GSAP + ScrollTrigger** — reveal-uri de tip "word-by-word" pe manifeste
-- **lucide-react** — iconițe UI generice (nu și iconițele de servicii, care sunt SVG-uri custom din Figma)
+- **lucide-react** — singura librărie de iconițe UI (nu și iconițele de servicii, care sunt SVG-uri custom din Figma)
 
 Comenzi: `npm run dev` (preview local), `npm run build` (`tsc -b && vite build`), `npm run lint` (oxlint).
+
+Fără router: rutarea e făcută direct pe `window.location.pathname` în `App.tsx` (vezi „Pagini legale"). Fără teste automate — verificarea se face manual: `tsc`, `build`, iar vizual în browser (inclusiv headless cu Chrome + puppeteer-core, instalat în afara repo-ului).
 
 ## Identitate vizuală
 
@@ -19,59 +21,100 @@ Definită în `src/index.css` (`@theme`):
 | Token | Valoare | Utilizare |
 |---|---|---|
 | `--color-accent` | `#CAF077` | verde neon, accent principal (CTA-uri, iconițe, highlight-uri, punctul cursorului pe fundal întunecat) |
-| `--color-accent-2` | `#8DA853` | verde olive, folosit pe fundaluri deschise (contrast mai bun decât accent — și pe punctul cursorului acolo) |
+| `--color-accent-2` | `#8DA853` | verde olive, folosit pe fundaluri deschise |
 | `--color-ink` | `#0E0E0D` | text închis pe fundaluri accent |
 | `--color-obsidian` / `-2` / `-3` / `-4` | variații de negru | fundaluri secțiuni întunecate |
-| `--color-bone` | `#FAFDF1` | fundal deschis (secțiuni "Despre noi", "Portofoliu", "FAQ") |
+| `--color-bone` | `#FAFDF1` | fundal deschis (secțiuni „Despre noi", „Portofoliu", „FAQ") |
 | `--color-card-1..4` | nuanțe verzi-negru | fundaluri carduri proiecte |
 
-**Fonturi**: Geist (sans, titluri) + Roboto Slab (`font-mono` — folosit pentru toate etichetele mici/eyebrow-uri, în ciuda numelui clasei).
+**Fonturi**: Geist (sans, titluri + paragrafe) + Roboto Slab (`font-mono` — pentru etichetele mici/eyebrow-uri, în ciuda numelui clasei).
 
-**Logo**: SVG-uri originale în `src/assets/logo.svg` (wordmark complet) și `src/assets/mark.svg` (doar iconul), ambele cu `fill="currentColor"` ca să poată fi colorate din CSS. Randate prin componentele `Logo.tsx` / `Mark.tsx` (`dangerouslySetInnerHTML` + import `?raw`). Iconul din wordmark e mereu accent (regulă CSS `.zecro-logo svg > g:last-of-type`).
+**Logo**: `src/assets/logo.svg` (wordmark) și `src/assets/mark.svg` (iconul), ambele cu `fill="currentColor"`. Randate prin `Logo.tsx` / `Mark.tsx` (`dangerouslySetInnerHTML` + import `?raw`; SVG-uri statice, fără input de la utilizator). Iconul din wordmark e mereu accent (regula CSS `.zecro-logo svg > g:last-of-type`).
 
-**Cursor custom** (`CustomCursor.tsx`): punct + cerc alb care urmăresc mouse-ul, cu etichete contextuale traduse în română (`data-cursor="..."` pe elemente interactive). Punctul își schimbă culoarea în funcție de fundalul de sub el: verde lime (`accent`) pe fundal întunecat, verde olive (`accent-2`) pe fundal deschis — detectat prin `data-cursor-bg="light"` pus pe secțiunile cu fundal deschis (StudioStatement, SelectedWork, FAQ). Cercul rămâne mereu alb (decizie explicită). Animația de mărire a cercului la hover are spring supra-amortizat (`damping: 36` la `stiffness: 300`) ca să nu depășească ținta și să nu creeze flash de reflow pe etichetele de 2 rânduri.
+**Text în cerc**: `src/assets/circle-text.svg` („AGENȚIE DE MANAGEMENT SPORTIV · ZEC.RO"), randat prin `CircleText.tsx`, rotație lentă (30s) în jurul mark-ului din StudioStatement. Mark-ul și textul sunt gri `black/50`, aceeași nuanță ca textele din „PILONI", pe fundal transparent. SVG-urile exportate din Illustrator trebuie normalizate (fără prolog XML/comentariu, `fill="currentColor"` pe rădăcină) — altfel se randează negre.
 
-## Structura paginii (`src/App.tsx`)
+**Cursor custom** (`CustomCursor.tsx`): punct + cerc alb, cu etichete contextuale în română (`data-cursor="..."`). Punctul e verde lime pe fundal întunecat și olive pe fundal deschis (detectat prin `data-cursor-bg="light"` pe StudioStatement, SelectedWork, FAQ). Cercul rămâne mereu alb (decizie explicită). Spring supra-amortizat pe mărirea cercului (`damping: 36`) ca să nu se vadă flash de reflow pe etichetele de 2 rânduri.
 
-1. **Navbar** — logo + linkuri (`Despre noi`, `Portofoliu`, `Servicii`, `FAQ`, `Contact`) + CTA `Începe un proiect`. Capsulă plutitoare la scroll.
-2. **HeroSection** — poză de fundal (`public/hero.jpg`, zoom lent continuu 24s), tagline, „VEZI PORTOFOLIUL", headline „MANAGEMENT SPORTIV" (auto-fit pe un singur rând, full width, via măsurare JS în `useLayoutEffect`).
-3. **StudioStatement** (`id="studio"`) — manifest ZECRO (reveal GSAP), filozofie + 2 metrici (100% Transparență, FIFA Agenți Licențiați), mark-ul ZECRO într-un cerc, lista **Piloni** (Player Advisory / Club Solutions / Multi-Club Heritage / Commercial).
-4. **SelectedWork** (`id="work"`) — 3 proiecte reale (vezi mai jos), layout alternant stânga/dreapta, header sticky cu contor live „0X/03" (calculat din poziția de scroll, nu IntersectionObserver — motiv: bug de sincronizare descoperit și reparat). Imaginea fiecărui proiect (cu tilt 3D la hover) e click-abilă și deschide același modal ca butonul „Citește studiul de caz".
-5. **Capabilities** (`id="capabilities"`) — 4 carduri de servicii cu sticky-stack la scroll, conținut + iconițe SVG reale din Figma.
-6. **FAQ** (`id="faq"`) — accordion cu 5 întrebări.
-7. **ParallaxCallout** — banner cu efect typing (3 fraze românești) peste `public/parallax.jpg` (parallax scroll + zoom).
-8. **Footer** (`id="contact"`) — formular de contact inline (Nume/Email/Club/Tip solicitare/Mesaj) + linkuri + social.
-9. **ProjectModal** — drawer lateral deschis de orice buton „Începe un proiect", formular tradus (buget în €, tip proiect = cei 4 piloni).
-10. **CaseStudyModal** — deschis din cardurile de proiecte (buton sau imagine). **Responsive cu două variante distincte**, comutate prin `matchMedia` (prag 768px, nu doar clase CSS): pe desktop e un dialog centrat, mai lat (`max-w-4xl`), cu grid pe 3 coloane pentru CLIENT/IMPLICARE ZECRO/STATUS; pe mobil rămâne drawer lateral (`max-w-lg`, la fel ca ProjectModal), cu aceleași informații afișate ca listă verticală. Conținutul comun (tag-uri, faze) e factorizat în componente mici partajate (`Tags`, `InfoRows`, `PhasesList`).
+## Structura paginii (`src/App.tsx` → `HomePage`)
 
-## Conținut real (din Figma)
+1. **Navbar** — logo + linkuri (`Despre noi`, `Portofoliu`, `Servicii`, `FAQ`, `Contact`) + CTA `Începe un proiect`. Capsulă plutitoare la scroll. **Scroll-spy**: linkul secțiunii curente primește pill-ul activ (nimic activ cât ești în Hero). Meniul desktop apare doar la `min-width: 960px` **și** landscape (iPad Pro portrait și iPad mini landscape au amândouă 1024px, lățimea singură nu le deosebește); altfel hamburger. Meniul mobil folosește `100dvh` + blochează scroll-ul pe `body` cât e deschis (bug cu bara browserului care apare/dispare).
+2. **HeroSection** — video de fundal în buclă (`public/hero.mp4`, 2560×1440, ~1.7MB, mut, `playsInline`), poster = **primul cadru al videoclipului** (`public/hero.jpg`, extras cu ffmpeg, ca să nu existe salt vizual la încărcare), zoom lent peste video, tagline „Alături de fotbalul românesc spre un viitor mai bun.", „VEZI PORTOFOLIUL", headline „MANAGEMENT SPORTIV" auto-fit pe un rând (măsurare JS în `useLayoutEffect`; `<h1>` e `inline-block` într-un wrapper, altfel `scrollWidth` minte).
+3. **StudioStatement** (`id="studio"`) — manifest (reveal GSAP), filozofie + 2 metrici, mark + text rotativ în cerc, lista **Piloni**.
+4. **SelectedWork** (`id="work"`) — 3 proiecte reale, layout alternant, header sticky cu contor „0X/03" calculat din poziția de scroll. Imaginea (tilt 3D la hover) deschide același modal ca butonul „Citește studiul de caz". Hint-ul „Click pentru studiu de caz" apare doar pe landscape ≥960px.
+5. **Capabilities** (`id="capabilities"`) — 4 carduri de servicii, sticky-stack la scroll, iconițe SVG din Figma.
+6. **FAQ** (`id="faq"`) — accordion cu 5 întrebări (răspunsurile 1 și 5 revizuite: servicii punctuale / „one-off", cluburi la început de drum, inclusiv Liga 3).
+7. **ParallaxCallout** — banner cu efect typing peste `public/parallax.jpg`. Imaginea e decorativă (`alt=""` intenționat).
+8. **Footer** (`id="contact"`) — formular de contact inline, linkuri, **Facebook + LinkedIn** (linkuri reale, tab nou), `office@zec.ro`, rând final cu © „ZECRO S.R.L." și linkurile legale. Rândul are padding dreapta ca să nu intre sub butonul „Înapoi sus".
+9. **ProjectModal** — drawer lateral pentru „Începe un proiect". Buget în € cu **„< 10K€" preselectat** (intervale: <10K / 10–50K / 50–100K / 100K+), tip proiect cu **„One Task Only" prima opțiune și implicită** (+ cei 4 piloni). Se închide cu Esc și click în afară.
+10. **CaseStudyModal** — dialog centrat pe desktop, drawer lateral pe mobil (prag 768px prin `matchMedia`), header **sticky pe ambele variante**, cu „0X / NUME CLIENT". Se închide cu Esc și click în afară (pe desktop, wrapper-ul full-screen înghițea click-urile — rezolvat cu `onClick` pe el).
+11. **BackToTop** — buton rotund dreapta-jos, apare după 600px de scroll, scroll lin sus, eticheta cursorului „SUS".
 
-Sursă: `https://www.figma.com/design/8lwdXsgGoE7gAfCchl03vv/ZECRO` — mockup de referință în aceeași temă.
+## Pagini legale
 
-- **3 proiecte** în `src/data/projects.ts`: **A.S.P.I.** (echipamente + consultanță Liga 4), **Cetatea Suceava** (revitalizare brand istoric), **Gloria Ultra** (club construit de la zero). Imagini reale descărcate în `public/projects/`.
-- **4 servicii** în `Capabilities.tsx`: Management sportiv & suport operațional, Reprezentare & dezvoltare carieră, Ecosistem sportiv & revitalizare, Dezvoltare comercială & comunicare. Iconițe SVG descărcate din Figma → `src/assets/services/`, colorate via `currentColor` prin `ServiceIcon.tsx`.
-- Titlurile lungi (proiecte + servicii) sunt trunchiate la 2 rânduri (`line-clamp-2`).
+- `/politica-de-confidentialitate` și `/termeni-si-conditii`, randate de `LegalPage.tsx` (header cu logo, secțiuni numerotate, linkuri automate pe e-mail/URL-uri, titlu/descriere/canonical setate din JS).
+- Conținutul e în `src/data/legal.ts`, datele firmei într-un singur loc, `src/data/company.ts` (denumire, CUI, TVA, nr. Registrul Comerțului, sediu, e-mail, telefon, ANPC, ANSPDCP + `SOCIAL`).
+- Rutare: `window.location.pathname` în `App.tsx`; linkurile din footer sunt `<a href>` obișnuite (încărcare completă). În `vercel.json` există `rewrites` explicite pentru cele două căi → `/index.html`. **De verificat după deploy** că adresele directe nu dau 404 (testat doar în dev).
+- **Numele reprezentantului legal a fost omis intenționat** (decizie: fără numele fondatorilor pe site). Textele sunt redactate pe structura standard GDPR și pe ce face efectiv site-ul (fără cookie-uri, fără analytics, fonturi de la Google Fonts) — **necesită revizuire juridică**.
 
-### Structura studiilor de caz (fiecare proiect are)
+## Conținut real
 
-- `involvement`: etichetă text pentru nivelul de implicare ZECRO (ex. „PARTENERIAT ADMINISTRATIV & CREATIV", „MANAGEMENT STRATEGIC CONTINUU", „MANAGEMENT EXECUTIV COMPLET") — afișată în grid-ul de info din drawer/dialog.
-- `phases`: listă **flexibilă** (nu fixă) de etape ale colaborării, fiecare cu `title`, `description` și `items` (checklist de realizări concrete). Numărul de faze poate diferi de la un proiect la altul — nu sunt forțate în tiparul "administrativ + creativ".
-- **Important**: conținutul fazelor pentru toate cele 3 proiecte e un **draft scris de asistent**, pornind de la ce se știa deja despre fiecare proiect — nu a fost încă validat integral de client cu fapte reale. De revizuit.
+Sursă design: `https://www.figma.com/design/8lwdXsgGoE7gAfCchl03vv/ZECRO`.
+
+- **3 proiecte** în `src/data/projects.ts`: **A.S.P.I.** (Steaua Magică → A.S.P.I., club nou construit pe spiritul și tradiția Politehnicii Iași, Liga 4), **ACSM Cetatea 1932 Suceava** (revitalizare brand istoric, management strategic continuu, promovare în Liga 2), **Gloria Ultra** (management executiv complet; colaborarea s-a încheiat când finanțatorii au reorientat clubul către mini-fotbal — menționat o singură dată, accentul e pe ce s-a construit).
+- **4 servicii** în `Capabilities.tsx`. Iconițe în `src/assets/services/`.
+- Titlurile lungi sunt trunchiate la 2 rânduri (`line-clamp-2`).
+
+### Structura unui studiu de caz (`Project` în `projects.ts`)
+
+Hero (imagine, titlu, descriere, taguri, client / implicare / status) → **Context și provocare** (`context`) → **Pilonul Administrativ** (`administrativePillar`) → **Pilonul de Branding** (`brandingPillar`) → **Galerie foto** (`gallery`) → **Rezultate & impact** (`results`, calitativ, fără cifre inventate). Câmpul vechi `phases` nu mai există.
+
+- Fiecare pilon: `heading`, `description`, `items[]`.
+- **Galeria hibridă**: `GalleryItem` = `{ type: "wide", image }` (16:9, lățime completă) sau `{ type: "squares", images: [3] }` (rând de 3 pătrate), fiecare imagine cu `src` + **`alt` descriptiv**. Număr variabil per proiect (A.S.P.I. 3 wide + 2 rânduri, Cetatea 4 + 1, Gloria Ultra 4 + 2). Gap 16px, `loading="lazy"`.
+- **Imagini galerie**: `public/projects/<id>/<nume-seo>.jpg` (ex. `esarfa-aspi.jpg`), 26 de fișiere, **wide 1600×900, pătrat 800×800**, JPG ~80–85%. Cover-uri: `public/projects/<id>.png` (recomandat 2400×1600).
+- **Neincluse intenționat**: parteneriate de echipament cu nume de branduri (Adidas, JAKO, Joma — apar doar în documente Gemini, neconfirmate) și rezultate cu cifre.
+
+## SEO și securitate
+
+- `index.html`: meta description, canonical (`https://zec.ro/`), Open Graph + Twitter Card, theme-color, JSON-LD `ProfessionalService` (cu `sameAs` Facebook/LinkedIn). `og-image.jpg` 2400×1260 în `public/`.
+- `public/robots.txt`, `public/sitemap.xml` (home + cele 2 pagini legale).
+- Alt text pe toate imaginile (exceptând fundalul decorativ din ParallaxCallout).
+- `vercel.json`: headere de bază (`X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`) + rewrites pentru paginile legale.
+- Verificat: `npm audit` 0 vulnerabilități, fără secrete în cod, fără `target="_blank"` nesigur, fără cookie-uri / localStorage / analytics. **CSP nu e adăugat** (ar necesita testare ca să nu strice Framer Motion sau Google Fonts).
 
 ## Localizare
 
-Site 100% în română (nav, CTA-uri, formulare, cursor). Rămân în engleză doar denumirile celor 4 "piloni"/tip-uri de proiect (Player Advisory, Club Solutions, Multi-Club Heritage, Commercial) — tratate ca nume proprii de serviciu, consistent peste tot unde apar. Buget-ul din `ProjectModal` e în euro (€), nu dolari.
+Site 100% în română. Rămân în engleză doar denumirile celor 4 piloni / tipuri de proiect (Player Advisory, Club Solutions, Multi-Club Heritage, Commercial) și „One Task Only" — nume proprii de serviciu.
+
+## Sincronizare cu brandingul (Gemini)
+
+Fișierul local `GEMINI-SYNC.md` (netracked, doar pentru lipit în sesiunea Gemini) conține deciziile unde **site-ul e sursa de adevăr**: Geist + Roboto Slab (nu Roboto Serif), fundal `#0E0E0D` (nu `#262626`), imaginea AI cu statuie în Hero, CTA-urile „ÎNCEPE UN PROIECT" / „VEZI PORTOFOLIUL", fără grilă cu cele 6 valori, fără numele fondatorilor. Conține și faptele corectate despre cele 3 proiecte (Gemini avea greșit originea A.S.P.I. și statusul Gloria Ultra). Parțial depășit de revizuirile ulterioare de texte — de reîmprospătat înainte de următorul schimb cu Gemini.
 
 ## Deploy
 
-- **GitHub**: `https://github.com/lualex216/zecro` (repo recreat de la zero, git init local + push).
-- **Vercel**: `zecro.vercel.app` — proiect existent, reconectat la noul repo. **Blocaj cunoscut, nerezolvat la ultima verificare**: Framework Preset era setat pe Next.js (proiect vechi, nerelaționat), cauzând eroare de build (`No Next.js version detected`). Trebuie schimbat manual în dashboard: Settings → General → Build & Development Settings → Framework Preset → **Vite**, apoi redeploy.
+- **GitHub**: `https://github.com/lualex216/zecro` (branch `main`).
+- **Vercel**: `zecro.vercel.app`. **Blocaj cunoscut, nerezolvat la ultima verificare**: Framework Preset setat pe Next.js (proiect vechi), cauzând eroare de build. De schimbat manual: Settings → General → Build & Development Settings → Framework Preset → **Vite**, apoi redeploy.
+- Domeniul `zec.ro` e presupus în canonical / OG / sitemap; **conectarea lui în Vercel nu a fost confirmată**.
+
+## Planificat (nu e implementat)
+
+**Coming soon**: s-a renunțat (19–21 oct. 2026); site-ul complet se lansează direct, fără pagină intermediară.
+
+**Blog** (deasupra FAQ, între Servicii și FAQ; link „BLOG" în meniu între SERVICII și FAQ): pregătit acum, ascuns până există articole. Date în `src/data/posts.ts`; fiecare articol are pagină proprie `/blog/<slug>` cu **head generat static la build** (titlu / descriere / OG per articol, altfel LinkedIn/Facebook arată preview-ul paginii principale), intrări în sitemap, JSON-LD `Article`, rewrite `/blog/:slug`. Pe prima pagină ultimele 4 articole, layout adaptat la 1–4 (fără sloturi goale), arhivă `/blog` peste 4. Template-ul Studiova avea cele 4 sloturi scrise de mână în HTML, nu o limită tehnică. Publicare programată prin câmp `date` + redeploy săptămânal automat. **Decizii deschise**: prag minim de articole pentru afișare, formatul articolelor, autor („ZECRO"), dimensiune copertă (16:9, 1600×900).
 
 ## Ce mai rămâne deschis
 
-- Framework Preset greșit pe Vercel (blocaj activ, vezi mai sus) — de confirmat dacă a fost rezolvat între timp.
-- Conținutul fazelor din studiile de caz (`phases` în `projects.ts`) e draft, de validat cu clientul.
-- Secțiunea Capabilities își păstrează manifestul tradus („VIZIUNEA evoluează în STRATEGIE...") dar alte fragmente minore ar putea necesita revizuire.
-- Contact social (Instagram/LinkedIn în footer) sunt text simplu, fără URL-uri reale.
-- Email de contact (`contact@zecro.ro`) e placeholder, de confirmat dacă e adresa reală.
-- Nu există teste automate — orice verificare s-a făcut manual, vizual, în browser.
+- Framework Preset greșit pe Vercel și conectarea domeniului `zec.ro` (vezi Deploy).
+- **Formulare**: footer + „Începe un proiect" trimit prin `api/contact.ts` (Vercel Function, Resend, fără dependențe noi) la `office@zec.ro`, cu `reply_to` = e-mailul vizitatorului, honeypot `website`, validare și escape HTML; client în `src/lib/sendContact.ts`, cu stări „Se trimite..." / eroare (fallback `mailto:`). Testat doar cu Resend simulat. **De făcut**: cont Resend + domeniul `zec.ro` verificat (DNS), `RESEND_API_KEY` în Vercel (Production + Preview; opțional `CONTACT_FROM`, `CONTACT_TO`), test real după deploy. În `npm run dev`, `/api` nu există (trimiterea dă eroare); local se folosește `vercel dev`. Politica de confidențialitate trebuie completată cu Resend ca procesator.
+- `STATUS` e hardcodat „ACTIV" pentru toate proiectele în `CaseStudyModal`; la Gloria Ultra ar trebui „inactiv" (în Figma era). Necesită câmp `status` per proiect.
+- `og-image.jpg`: statuia acoperă literele din mijlocul wordmark-ului („ZECRO" se citește „ZEC_O"); de refăcut dacă se vrea numele brandului lizibil în preview-uri.
+- Perioadele și orașul exact (Gloria Ultra: Dorohoi sau Botoșani?) nu sunt pe site; apar doar în textele pentru Facebook/LinkedIn.
+- Revizuire juridică a paginilor legale; opțional, self-hosting pentru fonturi (elimină transferul de IP către Google); CSP.
+- Instagram a fost scos din footer (nu există cont/URL); de adăugat dacă apare.
+- Lint: 2 avertismente oxlint (`ProjectModal` dependențe `useEffect` pentru Esc; `Navbar` setState în effect).
+
+## Convenții de lucru
+
+- **Push pe git doar la cerere explicită.** Rămân netracked intenționat: `.agents/`, `skills-lock.json` (skill-ul `brag-slim` + lock) și `GEMINI-SYNC.md`; `brag-output/` e în `.gitignore`.
+- Înainte de orice înlocuire de fișiere în `public/`: `git status` / `git diff`. (Incident: imaginile puse manual de client în `public/projects/` au fost suprascrise o dată; nerecuperabile pentru că nu fuseseră comise.)
+- Orice schimbare se verifică cu `tsc --noEmit` + `npm run build` + test în browser.
+- Fără numele fondatorilor pe site; autorul textelor publice = „ZECRO".
