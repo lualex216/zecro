@@ -2,17 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zec.ro/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://zec.ro/politica-de-confidentialitate</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-10-21</lastmod>
   </url>
   <url>
     <loc>https://zec.ro/termeni-si-conditii</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-10-13</lastmod>
   </url>
 </urlset>

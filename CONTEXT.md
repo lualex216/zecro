@@ -77,8 +77,8 @@ Hero (imagine, titlu, descriere, taguri, client / implicare / status) → **Cont
 
 ## SEO și securitate
 
-- `index.html`: meta description, canonical (`https://zec.ro/`), Open Graph + Twitter Card, theme-color, JSON-LD `ProfessionalService` (cu `sameAs` Facebook/LinkedIn). `og-image.jpg` 2400×1260 în `public/`.
-- `public/robots.txt`, `public/sitemap.xml` (home + cele 2 pagini legale).
+- `index.html`: title „ZECRO — Agenție de management sportiv în fotbalul românesc", meta description (~160 caractere), canonical (`https://zec.ro/`), Open Graph + Twitter Card, theme-color, JSON-LD `ProfessionalService` (nume, `legalName`, e-mail, telefon, `vatID`, `contactPoint`, adresă doar la nivel de localitate — **fără stradă**, sediul fiind la bloc/apartament; `sameAs` Facebook/LinkedIn). `og-image.jpg` 2400×1260 în `public/`.
+- `public/robots.txt`, `public/sitemap.xml` (home + cele 2 pagini legale, cu `lastmod` scris de mână — **de actualizat** când se schimbă conținutul paginilor).
 - Alt text pe toate imaginile (exceptând fundalul decorativ din ParallaxCallout).
 - `vercel.json`: headere de bază (`X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`) + rewrites pentru paginile legale.
 - Verificat: `npm audit` 0 vulnerabilități, fără secrete în cod, fără `target="_blank"` nesigur, fără cookie-uri / localStorage / analytics. **CSP nu e adăugat** (ar necesita testare ca să nu strice Framer Motion sau Google Fonts).
