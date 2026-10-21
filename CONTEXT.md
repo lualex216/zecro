@@ -10,7 +10,9 @@ Site web pentru **ZECRO S.R.L.**, agenție de management sportiv din România (f
 - **GSAP + ScrollTrigger** — reveal-uri de tip "word-by-word" pe manifeste
 - **lucide-react** — singura librărie de iconițe UI (nu și iconițele de servicii, care sunt SVG-uri custom din Figma)
 
-Comenzi: `npm run dev` (preview local), `npm run build` (`tsc -b && vite build`), `npm run lint` (oxlint).
+Comenzi: `npm run dev` (preview local), `npm run build` (`tsc -b && vite build && vite build --ssr ... && node scripts/prerender.mjs`), `npm run lint` (oxlint).
+
+**Prerender (SEO)**: după build-ul client, `src/entry-server.tsx` (`renderToString(<App path>)`) generează HTML static pentru `/` (în `dist/index.html`) și cele 2 pagini legale (`dist/<cale>.html`, cu title/description/canonical/OG proprii), iar `src/main.tsx` hidratează (`hydrateRoot` dacă `#root` are conținut). `vercel.json` are `cleanUrls: true` (servește `/termeni-si-conditii.html` la `/termeni-si-conditii`) în loc de rewrites. `useMediaQuery` folosește `useSyncExternalStore` cu snapshot de server `false`, ca să nu apară erori de hidratare. Orice componentă nouă trebuie să fie sigură la SSR (fără `window`/`document` la randare, doar în efecte). Verificat doar local (vite preview); **de verificat pe Vercel** că Build Command rulează `npm run build` și că adresele legale răspund fără 404.
 
 Fără router: rutarea e făcută direct pe `window.location.pathname` în `App.tsx` (vezi „Pagini legale"). Fără teste automate — verificarea se face manual: `tsc`, `build`, iar vizual în browser (inclusiv headless cu Chrome + puppeteer-core, instalat în afara repo-ului).
 
@@ -70,7 +72,7 @@ Hero (imagine, titlu, descriere, taguri, client / implicare / status) → **Cont
 
 - Fiecare pilon: `heading`, `description`, `items[]`.
 - **Galeria hibridă**: `GalleryItem` = `{ type: "wide", image }` (16:9, lățime completă) sau `{ type: "squares", images: [3] }` (rând de 3 pătrate), fiecare imagine cu `src` + **`alt` descriptiv**. Număr variabil per proiect (A.S.P.I. 3 wide + 2 rânduri, Cetatea 4 + 1, Gloria Ultra 4 + 2). Gap 16px, `loading="lazy"`.
-- **Imagini galerie**: `public/projects/<id>/<nume-seo>.jpg` (ex. `esarfa-aspi.jpg`), 26 de fișiere, **wide 1600×900, pătrat 800×800**, JPG ~80–85%. Cover-uri: `public/projects/<id>.png` (recomandat 2400×1600).
+- **Imagini galerie**: `public/projects/<id>/<nume-seo>.jpg` (ex. `esarfa-aspi.jpg`), 26 de fișiere, **wide 1600×900, pătrat 800×800**, JPG ~80–85%. Cover-uri: `public/projects/<id>.jpg` (JPG ~80%, 1600 px lățime; PNG-urile de 2,5 MB au fost înlocuite).
 - **Neincluse intenționat**: parteneriate de echipament cu nume de branduri (Adidas, JAKO, Joma — apar doar în documente Gemini, neconfirmate) și rezultate cu cifre.
 
 ## SEO și securitate

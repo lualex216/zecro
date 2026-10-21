@@ -44,8 +44,10 @@ function HomePage() {
 
 const LEGAL_BY_PATH = Object.fromEntries(LEGAL_DOCUMENTS.map((d) => [d.path, d]));
 
-export default function App() {
-  const path = window.location.pathname.replace(/\/+$/, "") || "/";
+export default function App({ path: initialPath }: { path?: string }) {
+  const path = (initialPath ?? window.location.pathname)
+    .replace(/\.html$/, "")
+    .replace(/\/+$/, "") || "/";
   const legalDoc = LEGAL_BY_PATH[path];
   return legalDoc ? <LegalPage doc={legalDoc} /> : <HomePage />;
 }

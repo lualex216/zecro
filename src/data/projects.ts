@@ -41,7 +41,7 @@ export const projects: Project[] = [
     description:
       "ZECRO a preluat moștenirea clubului de copii și juniori Steaua Magică din Iași și a transformat proiectul în A.S.P.I.: un club nou, construit pe spiritul și tradiția Politehnicii Iași și înscris în Liga 4, cu un plan de dezvoltare care include și susținerea unei academii de juniori.",
     tags: ["Creare Club & Identitate", "Licențiere & Administrativ", "Academie de Juniori"],
-    image: "/projects/aspi.png",
+    image: "/projects/aspi.jpg",
     involvement: "TRANSFORMARE CLUB & ÎNFIINȚARE ACADEMIE",
     context:
       "Fotbalul de juniori din Iași avea nevoie de o structură administrativă nouă — capabilă să transforme un nucleu existent de copii și juniori într-un proiect cu perspectivă de competiție profesionistă, fără moștenirea birocratică a unui club vechi, dar păstrând spiritul și tradiția Politehnicii Iași.",
@@ -120,7 +120,7 @@ export const projects: Project[] = [
     description:
       "Proiect din pilonul ZECRO Heritage axat pe protejarea și restaurarea patrimoniului sportiv. ZECRO a redesenat sigla ACSM Cetatea 1932 Suceava, a oferit asistență pe comunicare și social media și asigură managementul strategic continuu în cadrul conducerii clubului.",
     tags: ["Revitalizare Brand Istoric", "Management Strategic", "Strategie Social Media"],
-    image: "/projects/cetatea-suceava.png",
+    image: "/projects/cetatea-suceava.jpg",
     involvement: "MANAGEMENT STRATEGIC CONTINUU",
     context:
       "Un brand istoric al fotbalului din Bucovina, cu identitate puternică în comunitate, dar cu nevoie de restructurare vizuală și de guvernanță strategică pentru a rămâne relevant și competitiv în Liga 3.",
@@ -209,7 +209,7 @@ export const projects: Project[] = [
     description:
       "ZECRO a preluat proiectul într-o fază incipientă și l-a condus direct, construind identitatea de brand, structura organizațională și fluxurile administrative ale clubului. Parcursul s-a încheiat când finanțatorii au reorientat clubul către mini-fotbal.",
     tags: ["Management Executiv Complet", "Creare Club & Identitate", "Brand & Comercial"],
-    image: "/projects/gloria-ultra.png",
+    image: "/projects/gloria-ultra.jpg",
     involvement: "MANAGEMENT EXECUTIV COMPLET",
     context:
       "Proiectul și-a propus să testeze metode moderne de administrare și guvernanță pentru un club de fotbal, gestionat direct de fondatorii ZECRO.",

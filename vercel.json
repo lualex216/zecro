@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*)",
@@ -20,16 +21,6 @@
           "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/politica-de-confidentialitate",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/termeni-si-conditii",
-      "destination": "/index.html"
     }
   ]
 }
