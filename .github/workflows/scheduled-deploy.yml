@@ -1,0 +1,22 @@
+# Redeploy săptămânal pentru publicarea programată a articolelor de blog:
+# data din src/data/posts.ts se compară cu data build-ului, deci fără un build
+# nou după data articolului, acesta nu apare. Cronul rulează miercuri la 00:10 UTC
+# (după miezul nopții, ora României).
+# Necesită secretul VERCEL_DEPLOY_HOOK_URL (Vercel → Settings → Git → Deploy Hooks).
+name: Scheduled deploy
+
+on:
+  schedule:
+    - cron: "10 0 * * 3"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          test -n "$HOOK" || { echo "VERCEL_DEPLOY_HOOK_URL lipsește"; exit 1; }
+          curl --fail --silent --show-error -X POST "$HOOK"

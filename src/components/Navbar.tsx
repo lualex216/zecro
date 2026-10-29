@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Menu } from "lucide-react";
 import Logo from "./Logo";
 import { useMediaQuery } from "../hooks/useMediaQuery";
+import { FEED } from "../data/posts";
 
 const LINKS = [
   { label: "DESPRE NOI", href: "#studio" },
   { label: "PORTOFOLIU", href: "#work" },
   { label: "SERVICII", href: "#capabilities" },
+  ...(FEED.length > 0 ? [{ label: "BLOG", href: "#blog" }] : []),
   { label: "FAQ", href: "#faq" },
   { label: "CONTACT", href: "#contact" },
 ];
