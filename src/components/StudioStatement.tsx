@@ -80,8 +80,8 @@ export default function StudioStatement() {
 
             <div className="mt-12 grid grid-cols-2 gap-6 border-t border-black/15 pt-8">
               {[
-                ["100%", "TRANSPARENȚĂ"],
-                ["FIFA", "AGENȚI LICENȚIAȚI"],
+                ["L3 → L2", "PROMOVARE CETATEA SUCEAVA"],
+                ["3", "CLUBURI CONSTRUITE SAU RECONSTRUITE"],
               ].map(([num, label]) => (
                 <div key={label}>
                   <div className="font-sans text-2xl font-extrabold tracking-tight sm:text-3xl">

@@ -65,8 +65,10 @@ export default function ParallaxCallout({ onOpenModal }: { onOpenModal: () => vo
         className="absolute inset-0"
       >
         <img
-          src="/parallax.jpg"
+          src="/parallax.webp"
           alt=""
+          width={2560}
+          height={1440}
           className="h-full w-full object-cover"
         />
       </motion.div>

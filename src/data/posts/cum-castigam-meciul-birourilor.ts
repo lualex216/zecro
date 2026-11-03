@@ -5,6 +5,7 @@ export const order = 2;
 
 export const meta: PostMeta = {
   slug: "cum-castigam-meciul-birourilor",
+  seoTitle: "Licențierea cluburilor și clasificarea academiilor",
   title: "Cum câștigăm „meciul birourilor”",
   subtitle: "Ghid de administrare, licențiere și clasificare a academiilor în fotbalul din România",
   excerpt: "Auditul instituțional, dosarul de licențiere și clasificarea academiilor: ce trebuie pus în ordine ca un club să aibă stabilitate și drept de joc.",

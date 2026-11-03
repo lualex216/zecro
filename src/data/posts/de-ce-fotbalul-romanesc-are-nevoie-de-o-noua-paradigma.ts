@@ -5,6 +5,7 @@ export const order = 0;
 
 export const meta: PostMeta = {
   slug: "de-ce-fotbalul-romanesc-are-nevoie-de-o-noua-paradigma",
+  seoTitle: "De la impresariat la management sportiv integrat",
   title: "De ce fotbalul românesc are nevoie de o nouă paradigmă",
   subtitle: "De la impresariatul tradițional la managementul sportiv integrat",
   excerpt: "Impresariatul clasic și-a arătat limitele. Ce se schimbă atunci când reprezentarea jucătorilor și administrarea cluburilor sunt gândite împreună.",

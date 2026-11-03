@@ -1,8 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { projects, type Project } from "../data/projects";
+import { projects, projectPath, type Project } from "../data/projects";
 import { useMediaQuery } from "../hooks/useMediaQuery";
+
+// Click simplu → modal; cu Ctrl/Cmd/Shift sau click-mijloc rămâne linkul normal (pagina proprie).
+function interceptOpen(e: React.MouseEvent, open: () => void) {
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+  e.preventDefault();
+  open();
+}
 
 function ProjectVisual({
   project,
@@ -11,7 +18,7 @@ function ProjectVisual({
   project: Project;
   onOpen: (p: Project) => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
 
@@ -36,20 +43,23 @@ function ProjectVisual({
 
   return (
     <div className="group/visual relative w-full" style={{ perspective: 1400 }}>
-      <motion.div
+      <motion.a
         ref={ref}
+        href={projectPath(project)}
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
-        onClick={() => onOpen(project)}
+        onClick={(e: React.MouseEvent) => interceptOpen(e, () => onOpen(project))}
         data-cursor="VEZI PROIECTUL"
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="relative aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl bg-card-1"
+        className="relative block aspect-[4/3] w-full cursor-pointer overflow-hidden rounded-2xl bg-card-1"
       >
         <motion.div style={{ x: moveX, y: moveY, scale: 1.12 }} className="absolute inset-0">
           <img
             className="h-full w-full object-cover"
             src={project.image}
             alt={`${project.client} — copertă proiect ZECRO`}
+            width={1600}
+            height={1066}
             loading="lazy"
           />
         </motion.div>
@@ -66,7 +76,7 @@ function ProjectVisual({
             transition: "opacity 0.3s",
           }}
         />
-      </motion.div>
+      </motion.a>
     </div>
   );
 }
@@ -191,14 +201,15 @@ export default function SelectedWork({
                       Click pentru studiu de caz
                     </span>
                   )}
-                  <button
+                  <a
+                    href={projectPath(p)}
                     data-cursor="VEZI PROIECTUL"
-                    onClick={() => onOpen(p)}
+                    onClick={(e) => interceptOpen(e, () => onOpen(p))}
                     className="inline-flex items-center gap-2 rounded-full bg-obsidian px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-white transition-transform hover:scale-105"
                   >
                     Citește studiul de caz
                     <ArrowUpRight size={14} />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

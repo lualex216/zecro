@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 
 const ITEMS = [
@@ -11,9 +11,9 @@ const ITEMS = [
   },
   {
     category: "LICENȚIERE",
-    question: "Sunteți agenție licențiată FIFA?",
+    question: "Lucrați cu agenți licențiați FIFA?",
     answer:
-      "Da, colaborăm exclusiv prin agenți licențiați FIFA, respectând toate reglementările naționale și internaționale din fotbal.",
+      "Da. Reprezentarea jucătorilor se face exclusiv prin agenți licențiați FIFA din rețeaua noastră de parteneri, cu respectarea regulamentelor FIFA și FRF în vigoare.",
   },
   {
     category: "COLABORARE",
@@ -79,21 +79,19 @@ export default function FAQ() {
                   </motion.span>
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {open && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <p className="max-w-2xl pb-6 text-base leading-relaxed text-black/70 sm:text-lg">
-                        {item.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {/* Răspunsurile rămân mereu în DOM (deci și în HTML-ul prerandat, pentru SEO);
+                    cele închise sunt doar restrânse vizual și ascunse pentru cititoarele de ecran. */}
+                <motion.div
+                  initial={false}
+                  animate={open ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
+                  className="overflow-hidden"
+                  aria-hidden={!open}
+                >
+                  <p className="max-w-2xl pb-6 text-base leading-relaxed text-black/70 sm:text-lg">
+                    {item.answer}
+                  </p>
+                </motion.div>
               </div>
             );
           })}

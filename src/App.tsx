@@ -15,9 +15,10 @@ import BackToTop from "./components/BackToTop";
 import LegalPage from "./components/LegalPage";
 import ArticleModal from "./components/ArticleModal";
 import ArticlePage from "./components/ArticlePage";
+import CaseStudyPage from "./components/CaseStudyPage";
 import { LEGAL_DOCUMENTS } from "./data/legal";
-import type { Project } from "./data/projects";
-import { findPost, postPath, type Post } from "./data/posts";
+import { findProject, projectPath, type Project } from "./data/projects";
+import { findPost, postDocumentTitle, postPath, type Post } from "./data/posts";
 
 function HomePage() {
   const [inquiryOpen, setInquiryOpen] = useState(false);
@@ -25,31 +26,46 @@ function HomePage() {
   const [activePost, setActivePost] = useState<Post | null>(null);
   const baseTitle = useRef("");
 
-  // Articolul se deschide în modal, dar adresa din bară devine /blog/<slug> (link de partajat).
+  // Articolul / studiul de caz se deschide în modal, dar adresa din bară devine
+  // /blog/<slug> sau /studii-de-caz/<id> (link de partajat, cu pagină proprie).
   const openPost = useCallback((post: Post) => {
-    window.history.pushState({ post: true }, "", postPath(post));
+    window.history.pushState({ modal: true }, "", postPath(post));
     setActivePost(post);
   }, []);
 
-  const closePost = useCallback(() => {
-    if (window.history.state?.post) {
+  const openProject = useCallback((project: Project) => {
+    window.history.pushState({ modal: true }, "", projectPath(project));
+    setActiveProject(project);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    if (window.history.state?.modal) {
       window.history.back();
     } else {
       window.history.replaceState(null, "", "/");
       setActivePost(null);
+      setActiveProject(null);
     }
   }, []);
 
   useEffect(() => {
     baseTitle.current = document.title;
-    const onPop = () => setActivePost(findPost(window.location.pathname));
+    const onPop = () => {
+      const path = window.location.pathname;
+      setActivePost(findPost(path));
+      setActiveProject(findProject(path));
+    };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
   useEffect(() => {
-    document.title = activePost ? `${activePost.title} — ZECRO` : baseTitle.current || document.title;
-  }, [activePost]);
+    document.title = activePost
+      ? postDocumentTitle(activePost)
+      : activeProject
+        ? `${activeProject.client} — studiu de caz ZECRO`
+        : baseTitle.current || document.title;
+  }, [activePost, activeProject]);
 
   return (
     <div className="relative min-h-screen w-full bg-obsidian">
@@ -59,7 +75,7 @@ function HomePage() {
       <main>
         <HeroSection />
         <StudioStatement />
-        <SelectedWork onOpen={setActiveProject} />
+        <SelectedWork onOpen={openProject} />
         <Capabilities />
         <Blog onOpen={openPost} />
         <FAQ />
@@ -70,8 +86,8 @@ function HomePage() {
       <BackToTop />
 
       <ProjectModal open={inquiryOpen} onClose={() => setInquiryOpen(false)} />
-      <CaseStudyModal project={activeProject} onClose={() => setActiveProject(null)} />
-      <ArticleModal post={activePost} onClose={closePost} />
+      <CaseStudyModal project={activeProject} onClose={closeModal} />
+      <ArticleModal post={activePost} onClose={closeModal} />
     </div>
   );
 }
@@ -85,5 +101,7 @@ export default function App({ path: initialPath }: { path?: string }) {
   const legalDoc = LEGAL_BY_PATH[path];
   if (legalDoc) return <LegalPage doc={legalDoc} />;
   const post = findPost(path);
-  return post ? <ArticlePage post={post} /> : <HomePage />;
+  if (post) return <ArticlePage post={post} />;
+  const project = findProject(path);
+  return project ? <CaseStudyPage project={project} /> : <HomePage />;
 }

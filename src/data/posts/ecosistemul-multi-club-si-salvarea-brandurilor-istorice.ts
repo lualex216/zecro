@@ -5,6 +5,7 @@ export const order = 3;
 
 export const meta: PostMeta = {
   slug: "ecosistemul-multi-club-si-salvarea-brandurilor-istorice",
+  seoTitle: "Modelul multi-club și salvarea cluburilor istorice",
   title: "Ecosistemul multi-club și salvarea brandurilor istorice",
   subtitle: "Modelul sustenabil de reconstrucție în fotbal",
   excerpt: "De ce dispar cluburile cu tradiție și cum poate o rețea de parteneriate să le ofere o a doua șansă, fără să le piardă identitatea.",

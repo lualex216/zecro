@@ -5,6 +5,7 @@ export const order = 1;
 
 export const meta: PostMeta = {
   slug: "ghidul-tanarului-fotbalist",
+  seoTitle: "Ghidul tânărului fotbalist: contracte și agenți FIFA",
   title: "Ghidul tânărului fotbalist",
   subtitle: "Ce trebuie să știe jucătorii și părinții despre contracte, licența FIFA și planificarea carierei",
   excerpt: "Primul contract, agentul licențiat FIFA și alegerea clubului potrivit: reperele pe care jucătorii și părinții ar trebui să le aibă înainte să semneze.",

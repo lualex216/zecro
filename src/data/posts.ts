@@ -9,6 +9,8 @@ export type PostBlock =
 export type PostMeta = {
   slug: string;
   title: string;
+  /** Titlul din <title> (50–60 caractere cu sufixul „ — ZECRO”); implicit `title`. */
+  seoTitle?: string;
   subtitle: string;
   /** Rezumat pentru meta description și JSON-LD. */
   excerpt: string;
@@ -64,6 +66,9 @@ export const FEED: Post[] = ALL;
 export const POST_PATH_PREFIX = "/blog/";
 
 export const postPath = (post: Post) => `${POST_PATH_PREFIX}${post.slug}`;
+
+/** Textul pentru <title> al unui articol. */
+export const postDocumentTitle = (post: Post) => `${post.seoTitle ?? post.title} — ZECRO`;
 
 export const findPost = (path: string) =>
   POSTS.find((p) => postPath(p) === path.replace(/\/+$/, "")) ?? null;

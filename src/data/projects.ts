@@ -21,6 +21,8 @@ export type Project = {
   title: string;
   client: string;
   description: string;
+  /** Rezumat scurt (~150 caractere) pentru meta description. */
+  excerpt: string;
   tags: string[];
   image: string;
   involvement: string;
@@ -40,8 +42,10 @@ export const projects: Project[] = [
       "De la Steaua Magică la A.S.P.I.: un club nou, construit pe spiritul și tradiția Politehnicii Iași, înscris în Liga 4.",
     description:
       "ZECRO a preluat moștenirea clubului de copii și juniori Steaua Magică din Iași și a transformat proiectul în A.S.P.I.: un club nou, construit pe spiritul și tradiția Politehnicii Iași și înscris în Liga 4, cu un plan de dezvoltare care include și susținerea unei academii de juniori.",
+    excerpt:
+      "De la Steaua Magică la A.S.P.I.: un club nou din Iași, construit pe spiritul Politehnicii Iași și înscris în Liga 4. Studiu de caz ZECRO.",
     tags: ["Creare Club & Identitate", "Licențiere & Administrativ", "Academie de Juniori"],
-    image: "/projects/aspi.jpg",
+    image: "/projects/aspi.webp",
     involvement: "TRANSFORMARE CLUB & ÎNFIINȚARE ACADEMIE",
     context:
       "Fotbalul de juniori din Iași avea nevoie de o structură administrativă nouă — capabilă să transforme un nucleu existent de copii și juniori într-un proiect cu perspectivă de competiție profesionistă, fără moștenirea birocratică a unui club vechi, dar păstrând spiritul și tradiția Politehnicii Iași.",
@@ -68,36 +72,36 @@ export const projects: Project[] = [
     gallery: [
       {
         type: "wide",
-        image: { src: "/projects/aspi/sigla-aspi.jpg", alt: "Sigla A.S.P.I. pe fundal albastru" },
+        image: { src: "/projects/aspi/sigla-aspi.webp", alt: "Sigla A.S.P.I. pe fundal albastru" },
       },
       {
         type: "wide",
         image: {
-          src: "/projects/aspi/identitate-vizuala-aspi.jpg",
+          src: "/projects/aspi/identitate-vizuala-aspi.webp",
           alt: "Moodboard de identitate vizuală A.S.P.I.: siglă, wordmark, paletă cromatică și tipografie",
         },
       },
       {
         type: "wide",
         image: {
-          src: "/projects/aspi/social-media-aspi.jpg",
+          src: "/projects/aspi/social-media-aspi.webp",
           alt: "Mockup de postări social media pentru A.S.P.I.",
         },
       },
       {
         type: "squares",
         images: [
-          { src: "/projects/aspi/esarfa-aspi.jpg", alt: "Eșarfă oficială A.S.P.I. 1945" },
-          { src: "/projects/aspi/sapca-aspi.jpg", alt: "Șapcă oficială A.S.P.I." },
-          { src: "/projects/aspi/hanorac-aspi.jpg", alt: "Hanorac oficial A.S.P.I. 1945" },
+          { src: "/projects/aspi/esarfa-aspi.webp", alt: "Eșarfă oficială A.S.P.I. 1945" },
+          { src: "/projects/aspi/sapca-aspi.webp", alt: "Șapcă oficială A.S.P.I." },
+          { src: "/projects/aspi/hanorac-aspi.webp", alt: "Hanorac oficial A.S.P.I. 1945" },
         ],
       },
       {
         type: "squares",
         images: [
-          { src: "/projects/aspi/steag-aspi.jpg", alt: "Steag oficial A.S.P.I. 1945" },
-          { src: "/projects/aspi/tricou-aspi.jpg", alt: "Tricou oficial A.S.P.I. 1945" },
-          { src: "/projects/aspi/fanion-aspi.jpg", alt: "Fanion oficial A.S.P.I. 1945" },
+          { src: "/projects/aspi/steag-aspi.webp", alt: "Steag oficial A.S.P.I. 1945" },
+          { src: "/projects/aspi/tricou-aspi.webp", alt: "Tricou oficial A.S.P.I. 1945" },
+          { src: "/projects/aspi/fanion-aspi.webp", alt: "Fanion oficial A.S.P.I. 1945" },
         ],
       },
     ],
@@ -119,8 +123,10 @@ export const projects: Project[] = [
       "Revitalizarea unui brand istoric: redesenarea identității vizuale, licențiere și management strategic.",
     description:
       "Proiect din pilonul ZECRO Heritage axat pe protejarea și restaurarea patrimoniului sportiv. ZECRO a redesenat sigla ACSM Cetatea 1932 Suceava, a oferit asistență pe comunicare și social media și asigură managementul strategic continuu în cadrul conducerii clubului.",
+    excerpt:
+      "Revitalizarea ACSM Cetatea 1932 Suceava: siglă redesenată, comunicare și management strategic, cu promovare în Liga 2. Studiu de caz ZECRO.",
     tags: ["Revitalizare Brand Istoric", "Management Strategic", "Strategie Social Media"],
-    image: "/projects/cetatea-suceava.jpg",
+    image: "/projects/cetatea-suceava.webp",
     involvement: "MANAGEMENT STRATEGIC CONTINUU",
     context:
       "Un brand istoric al fotbalului din Bucovina, cu identitate puternică în comunitate, dar cu nevoie de restructurare vizuală și de guvernanță strategică pentru a rămâne relevant și competitiv în Liga 3.",
@@ -148,28 +154,28 @@ export const projects: Project[] = [
       {
         type: "wide",
         image: {
-          src: "/projects/cetatea-suceava/rebranding-sigla-cetatea-suceava.jpg",
+          src: "/projects/cetatea-suceava/rebranding-sigla-cetatea-suceava.webp",
           alt: "Rebranding siglă ACSM Cetatea 1932 Suceava: înainte și după",
         },
       },
       {
         type: "wide",
         image: {
-          src: "/projects/cetatea-suceava/identitate-vizuala-cetatea-suceava.jpg",
+          src: "/projects/cetatea-suceava/identitate-vizuala-cetatea-suceava.webp",
           alt: "Moodboard de identitate vizuală ACSM Cetatea 1932 Suceava",
         },
       },
       {
         type: "wide",
         image: {
-          src: "/projects/cetatea-suceava/social-media-cetatea-suceava.jpg",
+          src: "/projects/cetatea-suceava/social-media-cetatea-suceava.webp",
           alt: "Mockup de postări social media pentru ACSM Cetatea 1932 Suceava",
         },
       },
       {
         type: "wide",
         image: {
-          src: "/projects/cetatea-suceava/afis-bilete-cetatea-suceava.jpg",
+          src: "/projects/cetatea-suceava/afis-bilete-cetatea-suceava.webp",
           alt: "Afiș de meci și bilete ACSM Cetatea 1932 Suceava",
         },
       },
@@ -177,15 +183,15 @@ export const projects: Project[] = [
         type: "squares",
         images: [
           {
-            src: "/projects/cetatea-suceava/esarfa-cetatea-suceava.jpg",
+            src: "/projects/cetatea-suceava/esarfa-cetatea-suceava.webp",
             alt: "Eșarfă oficială ACSM Cetatea 1932 Suceava",
           },
           {
-            src: "/projects/cetatea-suceava/sapca-cetatea-suceava.jpg",
+            src: "/projects/cetatea-suceava/sapca-cetatea-suceava.webp",
             alt: "Șapcă oficială ACSM Cetatea 1932 Suceava",
           },
           {
-            src: "/projects/cetatea-suceava/backdrop-conferinta-cetatea-suceava.jpg",
+            src: "/projects/cetatea-suceava/backdrop-conferinta-cetatea-suceava.webp",
             alt: "Backdrop de conferință de presă ACSM Cetatea 1932 Suceava",
           },
         ],
@@ -208,8 +214,10 @@ export const projects: Project[] = [
       "Management executiv complet pentru un club la început de drum: structură organizațională, identitate de brand și administrare modernă.",
     description:
       "ZECRO a preluat proiectul într-o fază incipientă și l-a condus direct, construind identitatea de brand, structura organizațională și fluxurile administrative ale clubului. Parcursul s-a încheiat când finanțatorii au reorientat clubul către mini-fotbal.",
+    excerpt:
+      "Gloria Ultra: management executiv complet pentru un club la început de drum, cu identitate de brand și administrare modernă. Studiu de caz ZECRO.",
     tags: ["Management Executiv Complet", "Creare Club & Identitate", "Brand & Comercial"],
-    image: "/projects/gloria-ultra.jpg",
+    image: "/projects/gloria-ultra.webp",
     involvement: "MANAGEMENT EXECUTIV COMPLET",
     context:
       "Proiectul și-a propus să testeze metode moderne de administrare și guvernanță pentru un club de fotbal, gestionat direct de fondatorii ZECRO.",
@@ -237,38 +245,38 @@ export const projects: Project[] = [
       {
         type: "wide",
         image: {
-          src: "/projects/gloria-ultra/mascota-paun-gloria-ultra.jpg",
+          src: "/projects/gloria-ultra/mascota-paun-gloria-ultra.webp",
           alt: "Ilustrație mascotă Păunul, Gloria Ultra",
         },
       },
       {
         type: "wide",
         image: {
-          src: "/projects/gloria-ultra/identitate-vizuala-gloria-ultra.jpg",
+          src: "/projects/gloria-ultra/identitate-vizuala-gloria-ultra.webp",
           alt: "Moodboard de identitate vizuală Gloria Ultra",
         },
       },
       {
         type: "wide",
         image: {
-          src: "/projects/gloria-ultra/social-media-gloria-ultra.jpg",
+          src: "/projects/gloria-ultra/social-media-gloria-ultra.webp",
           alt: "Mockup de postări social media pentru Gloria Ultra",
         },
       },
       {
         type: "wide",
         image: {
-          src: "/projects/gloria-ultra/afis-meci-gloria-ultra.jpg",
+          src: "/projects/gloria-ultra/afis-meci-gloria-ultra.webp",
           alt: "Afiș meci Gloria Ultra vs ACS FC Bacău",
         },
       },
       {
         type: "squares",
         images: [
-          { src: "/projects/gloria-ultra/esarfa-gloria-ultra.jpg", alt: "Eșarfă oficială Gloria Ultra" },
-          { src: "/projects/gloria-ultra/caciula-gloria-ultra.jpg", alt: "Căciulă oficială Gloria Ultra" },
+          { src: "/projects/gloria-ultra/esarfa-gloria-ultra.webp", alt: "Eșarfă oficială Gloria Ultra" },
+          { src: "/projects/gloria-ultra/caciula-gloria-ultra.webp", alt: "Căciulă oficială Gloria Ultra" },
           {
-            src: "/projects/gloria-ultra/papetarie-gloria-ultra.jpg",
+            src: "/projects/gloria-ultra/papetarie-gloria-ultra.webp",
             alt: "Papetărie și materiale de brand Gloria Ultra",
           },
         ],
@@ -277,20 +285,20 @@ export const projects: Project[] = [
         type: "squares",
         images: [
           {
-            src: "/projects/gloria-ultra/backdrop-sponsori-gloria-ultra.jpg",
+            src: "/projects/gloria-ultra/backdrop-sponsori-gloria-ultra.webp",
             alt: "Backdrop de sponsori Gloria Ultra",
           },
           {
-            src: "/projects/gloria-ultra/tricou-mascota-gloria-ultra.jpg",
+            src: "/projects/gloria-ultra/tricou-mascota-gloria-ultra.webp",
             alt: "Tricou cu mascota Păunul, Gloria Ultra",
           },
-          { src: "/projects/gloria-ultra/autocar-gloria-ultra.jpg", alt: "Autocar echipă Gloria Ultra" },
+          { src: "/projects/gloria-ultra/autocar-gloria-ultra.webp", alt: "Autocar echipă Gloria Ultra" },
         ],
       },
     ],
     results: {
       description:
-        "Proiectul a pus bazele unei identități de brand complete și a rafinat metodologia ZECRO pentru managementul executiv al proiectelor multi-club.",
+        "Proiectul a pus bazele unei identități de brand complete și a rafinat metodologia ZECRO de management executiv, aplicată ulterior în proiectele pentru alte cluburi.",
       highlights: [
         "Identitate de brand completă, de la structură organizațională la simbolistică",
         "Experiență directă în managementul executiv complet al unui club",
@@ -299,3 +307,10 @@ export const projects: Project[] = [
     },
   },
 ];
+
+export const PROJECT_PATH_PREFIX = "/studii-de-caz/";
+
+export const projectPath = (project: Project) => `${PROJECT_PATH_PREFIX}${project.id}`;
+
+export const findProject = (path: string) =>
+  projects.find((p) => projectPath(p) === path.replace(/\/+$/, "")) ?? null;
