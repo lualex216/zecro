@@ -97,6 +97,6 @@ export const blocks: PostBlock[] = [
   },
   {
     type: "p",
-    text: "La ZECRO ne-am propus să contribuim la această schimbare. Unim consultanța de business pentru cluburi cu managementul de carieră pentru sportivi, ca să construim un mediu curat, profesionist și ancorat în valori reale. Fotbalului românesc nu-i lipsește talentul. Îi lipsesc structura, transparența și viziunea pe termen lung."
+    text: "La ZECRO ne-am propus să contribuim la această schimbare. Unim consultanța de business pentru cluburi cu scoutingul și analiza tactică bazate pe date, ca să construim un mediu curat, profesionist și ancorat în valori reale. Fotbalului românesc nu-i lipsește talentul. Îi lipsesc structura, transparența și viziunea pe termen lung."
   }
 ];

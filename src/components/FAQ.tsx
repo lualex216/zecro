@@ -7,13 +7,13 @@ const ITEMS = [
     category: "SERVICII",
     question: "Ce servicii oferă ZECRO?",
     answer:
-      "Oferim soluții administrative pentru cluburi, dezvoltare multi-club, parteneriate comerciale și servicii punctuale — de la taskuri individuale la proiecte one-off —, precum și consiliere pentru jucători (player advisory).",
+      "Oferim soluții administrative pentru cluburi, dezvoltare multi-club, parteneriate comerciale și servicii punctuale — de la taskuri individuale la proiecte one-off —, precum și scouting și analiză tactică (Football Intelligence).",
   },
   {
-    category: "LICENȚIERE",
-    question: "Lucrați cu agenți licențiați FIFA?",
+    category: "SCOUTING",
+    question: "Ce primește un club prin scouting și analiză tactică?",
     answer:
-      "Da. Reprezentarea jucătorilor se face exclusiv prin agenți licențiați FIFA din rețeaua noastră de parteneri, cu respectarea regulamentelor FIFA și FRF în vigoare.",
+      "În funcție de nevoie: liste de jucători filtrate după post, vârstă și buget, rapoarte de evaluare, shadow teams pentru perioadele de transfer, analize video ale adversarilor și evaluări post-meci pentru propria echipă. Nu intermediem transferuri; decizia și negocierea rămân la club.",
   },
   {
     category: "COLABORARE",
@@ -25,13 +25,13 @@ const ITEMS = [
     category: "ACOPERIRE",
     question: "Lucrați doar în România sau și internațional?",
     answer:
-      "Suntem o agenție românească, dar construim parteneriate și colaborări la nivel internațional pentru jucători și cluburi.",
+      "Suntem o agenție românească, dar construim parteneriate și colaborări la nivel internațional pentru cluburi și academii.",
   },
   {
     category: "DEZVOLTARE",
-    question: "Lucrați și cu jucători tineri sau cu cluburi aflate la început de drum?",
+    question: "Lucrați și cu cluburi aflate la început de drum?",
     answer:
-      "Da. Susținem atât jucători consacrați, cât și tineri talentați, dar lucrăm și cu cluburi aflate la început de drum sau din ligile inferioare, inclusiv Liga 3, precum și cu cluburi profesioniste. Fiecare plan este adaptat nivelului, obiectivelor și etapei de dezvoltare.",
+      "Da. Lucrăm cu cluburi și academii din ligile inferioare, inclusiv Liga 3 și Liga 4, dar și cu cluburi profesioniste. Fiecare plan este adaptat nivelului, obiectivelor și etapei de dezvoltare a clubului.",
   },
 ];
 

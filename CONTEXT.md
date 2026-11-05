@@ -56,7 +56,7 @@ Definită în `src/index.css` (`@theme`):
 - `/politica-de-confidentialitate` și `/termeni-si-conditii`, randate de `LegalPage.tsx` (header cu logo, secțiuni numerotate, linkuri automate pe e-mail/URL-uri, titlu/descriere/canonical setate din JS).
 - Conținutul e în `src/data/legal.ts`, datele firmei într-un singur loc, `src/data/company.ts` (denumire, CUI, TVA, nr. Registrul Comerțului, sediu, e-mail, telefon, ANPC, ANSPDCP + `SOCIAL`).
 - Rutare: `window.location.pathname` în `App.tsx`; linkurile din footer sunt `<a href>` obișnuite (încărcare completă). În `vercel.json` există `rewrites` explicite pentru cele două căi → `/index.html`. **De verificat după deploy** că adresele directe nu dau 404 (testat doar în dev).
-- **Numele reprezentantului legal a fost omis intenționat** (decizie: fără numele fondatorilor pe site). Textele sunt redactate pe structura standard GDPR și pe ce face efectiv site-ul (fără cookie-uri, fără analytics, fonturi de la Google Fonts) — **necesită revizuire juridică**.
+- **Numele reprezentantului legal a fost omis intenționat** (decizie: fără numele fondatorilor pe site). Textele sunt redactate pe structura standard GDPR și pe ce face efectiv site-ul (fără cookie-uri, fără analytics, fonturi găzduite local în `public/fonts`) — **necesită revizuire juridică**.
 
 ## Conținut real
 
@@ -85,7 +85,7 @@ Hero (imagine, titlu, descriere, taguri, client / implicare / status) → **Cont
 
 ## Localizare
 
-Site 100% în română. Rămân în engleză doar denumirile celor 4 piloni / tipuri de proiect (Player Advisory, Club Solutions, Multi-Club Heritage, Commercial) și „One Task Only" — nume proprii de serviciu.
+Site 100% în română. Rămân în engleză doar denumirile celor 4 piloni / tipuri de proiect (Club Solutions, Football Intelligence, Multi-Club Heritage, Commercial) și „One Task Only" — nume proprii de serviciu.
 
 ## Sincronizare cu brandingul (Gemini)
 

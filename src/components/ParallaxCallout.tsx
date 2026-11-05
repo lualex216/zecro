@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 const PHRASES = [
   "CONSTRUIM FOTBALUL ROMÂNESC.",
   "FORMĂM CAMPIONII DE MÂINE.",
-  "APĂRĂM VIITORUL JUCĂTORILOR.",
+  "TRANSFORMĂM DATELE ÎN DECIZII.",
 ];
 
 function useTypingEffect(phrases: string[]) {

@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ServiceIcon from "./ServiceIcon";
 import laptopFootballSvg from "../assets/services/laptop-football.svg?raw";
-import playerTopSvg from "../assets/services/player-top.svg?raw";
+import strategySvg from "../assets/services/strategy.svg?raw";
 import bannerSvg from "../assets/services/banner.svg?raw";
 import clubInsigniaSvg from "../assets/services/club-insignia.svg?raw";
 
@@ -36,16 +36,16 @@ const CARDS: Card[] = [
   },
   {
     num: "02",
-    eyebrow: "PLAYER MANAGEMENT & ADVISORY",
-    title: "REPREZENTARE ȘI DEZVOLTARE CARIERĂ",
+    eyebrow: "FOOTBALL INTELLIGENCE",
+    title: "SCOUTING ȘI ANALIZĂ TACTICĂ",
     description:
-      "Construim parcursul jucătorului dincolo de următorul transfer. Oferim reprezentare prin agenți licențiați FIFA, sprijin contractual, evaluare sportivă și planificare, astfel încât jucătorul și familia să poată lua decizii informate la fiecare etapă a carierei.",
-    icon: playerTopSvg,
+      "Transformăm volumul de date și de meciuri în decizii clare pentru cluburi, staff-uri tehnice și agenții de management. Identificăm și evaluăm jucători după post, vârstă și buget, analizăm adversarii și propria echipă și livrăm rapoarte și clipuri video gata de folosit, fie că aduceți un jucător nou, fie că pregătiți următorul meci.",
+    icon: strategySvg,
     tags: [
-      "Reprezentare licențiată FIFA",
-      "Contracte, Negocieri & Transferuri",
-      "Scouting și analiză",
-      "Mentorat și planificare",
+      "Scouting & data scouting",
+      "Rapoarte de evaluare & shadow teams",
+      "Analiza adversarului",
+      "Analiză video post-meci",
     ],
     bg: "#191a13",
   },

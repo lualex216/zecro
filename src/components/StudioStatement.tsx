@@ -10,7 +10,7 @@ const MANIFESTO =
   "CONSTRUIM UN SISTEM SOLID ÎN FOTBALUL ROMÂNESC, UNDE TRANSPARENȚA, PERFORMANȚA ADMINISTRATIVĂ ȘI DEZVOLTAREA PE TERMEN LUNG CONVERG ÎN REZULTATE CONCRETE.";
 
 const PILONI = [
-  "PLAYER ADVISORY",
+  "FOOTBALL INTELLIGENCE",
   "CLUB SOLUTIONS",
   "MULTI-CLUB HERITAGE",
   "COMMERCIAL",
@@ -73,8 +73,8 @@ export default function StudioStatement() {
             <p className="max-w-md text-lg leading-relaxed text-black/75 sm:text-xl">
               Refuzăm soluțiile de moment și promisiunile deșarte în favoarea
               unui management sportiv integrat și profesionist. Prin
-              îmbinarea rigurozității administrative cu susținerea dedicată a
-              fiecărui atlet, transformăm provocările din fotbalul românesc
+              îmbinarea rigurozității administrative cu analiza riguroasă a
+              fiecărei decizii sportive, transformăm provocările din fotbalul românesc
               în oportunități reale de progres.
             </p>
 

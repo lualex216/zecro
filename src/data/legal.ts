@@ -18,8 +18,8 @@ export type LegalDocument = {
   related: { label: string; href: string };
 };
 
-const UPDATED = "13 octombrie 2026";
-const PRIVACY_UPDATED = "21 octombrie 2026";
+const UPDATED = "5 noiembrie 2026";
+const PRIVACY_UPDATED = "5 noiembrie 2026";
 
 const IDENTIFICATION: string[] = [
   `Denumire: ${COMPANY.name}`,
@@ -84,7 +84,7 @@ export const PRIVACY: LegalDocument = {
       heading: "Cookie-uri și tehnologii similare",
       blocks: [
         "Site-ul nu folosește cookie-uri de analiză sau de marketing și nu stochează date în browserul tău. Nu folosim Google Analytics, Meta Pixel sau instrumente similare de urmărire.",
-        "Fonturile site-ului (Geist și Roboto Slab) sunt încărcate de la Google Fonts. La încărcarea paginii, browserul tău transmite adresa IP către serverele Google pentru a primi fișierele de font.",
+        "Fonturile site-ului (Geist și Roboto Slab) sunt găzduite împreună cu restul site-ului, așa că browserul tău nu se conectează la Google Fonts sau la alte servere terțe pentru a le încărca.",
         "Dacă vom introduce instrumente de analiză sau de marketing, vom actualiza această politică și vom solicita consimțământul tău acolo unde legea o cere.",
       ],
     },
@@ -97,7 +97,7 @@ export const PRIVACY: LegalDocument = {
           "contabililor, consultanților juridici și altor profesioniști supuși obligației de confidențialitate, când este necesar;",
           "autorităților publice, atunci când legea ne obligă.",
         ],
-        "Unii dintre furnizori (de exemplu Vercel, Resend sau Google) pot prelucra date în afara Spațiului Economic European. În aceste cazuri ne bazăm, după caz, pe Cadrul UE–SUA privind confidențialitatea datelor sau pe clauze contractuale standard aprobate de Comisia Europeană.",
+        "Unii dintre furnizori (de exemplu Vercel sau Resend) pot prelucra date în afara Spațiului Economic European. În aceste cazuri ne bazăm, după caz, pe Cadrul UE–SUA privind confidențialitatea datelor sau pe clauze contractuale standard aprobate de Comisia Europeană.",
       ],
     },
     {
@@ -200,7 +200,7 @@ export const TERMS: LegalDocument = {
       blocks: [
         "Formularele „Începe un proiect” și „Contact” îți permit să ne transmiți o solicitare sau un mesaj. Trimiterea unei solicitări nu creează nicio obligație pentru ZECRO sau pentru tine și nu reprezintă o ofertă fermă.",
         "Serviciile noastre se prestează doar în baza unui contract scris, încheiat separat. Intervalele de buget din formular sunt orientative și nu constituie un preț.",
-        "Reprezentarea jucătorilor se realizează prin agenți licențiați FIFA, în conformitate cu reglementările FIFA și ale Federației Române de Fotbal.",
+        "ZECRO nu prestează servicii de agent de fotbal: nu intermediază transferuri și nu negociază contracte în numele jucătorilor sau al cluburilor.",
       ],
     },
     {

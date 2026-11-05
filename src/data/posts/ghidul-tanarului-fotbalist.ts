@@ -84,6 +84,6 @@ export const blocks: PostBlock[] = [
   },
   {
     type: "p",
-    text: "Pentru tinerii fotbaliști și familiile lor, sprijinul potrivit înseamnă să înțeleagă ce își asumă, să evalueze realist oportunitățile și să poată decide în cunoștință de cauză. La ZECRO oferim ghidare, sprijin contractual și mentorat, ca talentul fiecărui tânăr să fie susținut de educație, protecție și o direcție clară de dezvoltare."
+    text: "Pentru tinerii fotbaliști și familiile lor, sprijinul potrivit înseamnă să înțeleagă ce își asumă, să evalueze realist oportunitățile și să poată decide în cunoștință de cauză. Iar când vine momentul reprezentării, primul pas e simplu: verificați că agentul ales este licențiat FIFA."
   }
 ];
