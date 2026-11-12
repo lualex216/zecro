@@ -54,7 +54,7 @@ Din *Brand Voice & Story* (Drive, „Branding Map”):
 
 ## 5. Blog
 
-- Publicare programată (vezi `src/data/posts/schedule.json`): #1 28 oct., #2 4 nov., #3 11 nov., #4 18 nov. 2026.
+- Publicare programată (vezi `src/data/posts/schedule.json`): #1 18 nov. (ziua lansării), #2 25 nov., #3 2 dec., #4 9 dec. 2026.
 - **Blog #2** („Ghidul tânărului fotbalist”) rămâne articol educativ pentru jucători/părinți; finalul trimite doar la verificarea licenței FIFA a agentului, fără servicii ZECRO.
 - Sursele articolelor sunt în Google Drive (dosarul ZECRO) și au fost aliniate cu site-ul pe 5 nov. 2026.
 
