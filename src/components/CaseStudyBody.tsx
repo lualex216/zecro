@@ -127,7 +127,7 @@ export function InfoRows({ project, layout }: { project: Project; layout: "grid"
   const rows: [string, string][] = [
     ["CLIENT", project.client],
     ["IMPLICARE ZECRO", project.involvement],
-    ["STATUS", "ACTIV"],
+    ["STATUS", project.status],
   ];
 
   if (layout === "grid") {

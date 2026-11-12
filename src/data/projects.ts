@@ -26,6 +26,8 @@ export type Project = {
   tags: string[];
   image: string;
   involvement: string;
+  /** Starea colaborării ZECRO cu clubul, afișată în rândul „STATUS” al studiului de caz. */
+  status: "ACTIV" | "ÎNCHEIAT";
   context: string;
   administrativePillar: ProjectPillar;
   brandingPillar: ProjectPillar;
@@ -47,6 +49,7 @@ export const projects: Project[] = [
     tags: ["Creare Club & Identitate", "Licențiere & Administrativ", "Academie de Juniori"],
     image: "/projects/aspi.webp",
     involvement: "TRANSFORMARE CLUB & ÎNFIINȚARE ACADEMIE",
+    status: "ACTIV",
     context:
       "Fotbalul de juniori din Iași avea nevoie de o structură administrativă nouă — capabilă să transforme un nucleu existent de copii și juniori într-un proiect cu perspectivă de competiție profesionistă, fără moștenirea birocratică a unui club vechi, dar păstrând spiritul și tradiția Politehnicii Iași.",
     administrativePillar: {
@@ -128,6 +131,7 @@ export const projects: Project[] = [
     tags: ["Revitalizare Brand Istoric", "Management Strategic", "Strategie Social Media"],
     image: "/projects/cetatea-suceava.webp",
     involvement: "MANAGEMENT STRATEGIC CONTINUU",
+    status: "ACTIV",
     context:
       "Un brand istoric al fotbalului din Bucovina, cu identitate puternică în comunitate, dar cu nevoie de restructurare vizuală și de guvernanță strategică pentru a rămâne relevant și competitiv în Liga 3.",
     administrativePillar: {
@@ -219,6 +223,7 @@ export const projects: Project[] = [
     tags: ["Management Executiv Complet", "Creare Club & Identitate", "Brand & Comercial"],
     image: "/projects/gloria-ultra.webp",
     involvement: "MANAGEMENT EXECUTIV COMPLET",
+    status: "ÎNCHEIAT",
     context:
       "Proiectul și-a propus să testeze metode moderne de administrare și guvernanță pentru un club de fotbal, gestionat direct de fondatorii ZECRO.",
     administrativePillar: {

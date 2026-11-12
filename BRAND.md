@@ -50,7 +50,7 @@ Din *Brand Voice & Story* (Drive, „Branding Map”):
 
 - **A.S.P.I.** — club **nou**, construit pe spiritul și tradiția Politehnicii Iași, înscris în Liga 4 (preluarea clubului de juniori Steaua Magică). Nu îl prezenta ca „brandul istoric Politehnica” și nu numi „FC Politehnica Iași” ca partener fără acord formal.
 - **ACSM Cetatea 1932 Suceava** — rebranding siglă, management strategic continuu, **promovare în Liga 2**.
-- **Gloria Ultra** — ZECRO a **preluat proiectul într-o fază incipientă** (nu „fondare”) și l-a condus executiv; proiectul s-a **încheiat** când finanțatorii l-au reorientat spre mini-fotbal. Statusul în studiul de caz nu e „activ”.
+- **Gloria Ultra** — ZECRO a **preluat proiectul într-o fază incipientă** (nu „fondare”) și l-a condus executiv; proiectul s-a **încheiat** când finanțatorii l-au reorientat spre mini-fotbal. Statusul în studiul de caz e „ÎNCHEIAT” (câmpul `status` din `projects.ts`).
 - Rezultate acceptate pe site: promovarea Cetatea Suceava în Liga 2 (în studiul de caz). Metricile „L3 → L2” și „3 cluburi construite sau reconstruite” au fost scoase din `StudioStatement` pe 12 nov. 2026 (locul lor l-a luat semnătura); „reconstruite” nu se potrivea cu A.S.P.I., club nou.
 
 ## 5. Blog
@@ -62,8 +62,6 @@ Din *Brand Voice & Story* (Drive, „Branding Map”):
 ## 6. De rezolvat
 
 - **Termeni și condiții:** textul „ZECRO nu prestează servicii de agent de fotbal…” — de verificat de un avocat.
-- **Ordinea pilonilor** în `StudioStatement.tsx` (Football Intelligence e primul) diferă de ordinea canonică de mai sus.
-- **Eticheta cardului 03** e „MULTI CLUB HERITAGE” (fără cratimă) — de aliniat la „MULTI-CLUB HERITAGE”.
 - **Carusele de social media:** slide 3 din „Rigurozitatea administrativă” (pilonul Player Advisory) și caruselul „Câștigăm meciul birourilor” (anul 2027 la A.S.P.I., CTA pentru jucători) trebuie refăcute.
 - Documentele din Drive încă orientate spre jucători, păstrate intenționat: Brand Voice (pilonul de comunicare 2), Brand Core (valoarea „Sprijinirea și educarea fotbaliștilor”), Despre noi/Obiective (licențele FIFA), Strategia de lansare.
 

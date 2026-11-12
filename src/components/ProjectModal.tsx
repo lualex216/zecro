@@ -4,7 +4,7 @@ import { ArrowUpRight, X } from "lucide-react";
 import { sendContact } from "../lib/sendContact";
 
 const BUDGETS = ["< 10K€", "10K€ — 50K€", "50K€ — 100K€", "100K€+"];
-const TYPES = ["One Task Only", "Football Intelligence", "Club Solutions", "Multi-Club Heritage", "Commercial"];
+const TYPES = ["One Task Only", "Club Solutions", "Football Intelligence", "Multi-Club Heritage", "Commercial"];
 
 export default function ProjectModal({
   open,

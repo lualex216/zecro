@@ -7,8 +7,8 @@ import { LEGAL_DOCUMENTS } from "../data/legal";
 
 const PROJECT_TYPES = [
   "One Task Only",
-  "Football Intelligence",
   "Club Solutions",
+  "Football Intelligence",
   "Multi-Club Heritage",
   "Commercial",
 ];

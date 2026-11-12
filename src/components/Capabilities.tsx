@@ -48,7 +48,7 @@ const CARDS: Card[] = [
   },
   {
     num: "03",
-    eyebrow: "MULTI CLUB HERITAGE",
+    eyebrow: "MULTI-CLUB HERITAGE",
     title: "ECOSISTEM SPORTIV & REVITALIZARE",
     description:
       "Conectăm cluburi, academii și jucători pentru a crea rute reale de progres și proiecte sportive care pot crește în timp. În paralel, lucrăm la protejarea identității, istoriei și legăturii cluburilor cu propriile comunități.",
