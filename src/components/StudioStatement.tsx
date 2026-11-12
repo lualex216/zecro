@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Mark from "./Mark";
+import Signature from "./Signature";
 import CircleText from "./CircleText";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -78,20 +78,12 @@ export default function StudioStatement() {
               în oportunități reale de progres.
             </p>
 
-            <div className="mt-12 grid grid-cols-2 gap-6 border-t border-black/15 pt-8">
-              {[
-                ["L3 → L2", "PROMOVARE CETATEA SUCEAVA"],
-                ["3", "CLUBURI CONSTRUITE SAU RECONSTRUITE"],
-              ].map(([num, label]) => (
-                <div key={label}>
-                  <div className="font-sans text-2xl font-extrabold tracking-tight sm:text-3xl">
-                    {num}
-                  </div>
-                  <div className="mt-1 font-mono text-[10px] font-bold uppercase tracking-widest text-black/50">
-                    {label}
-                  </div>
-                </div>
-              ))}
+            <div className="mt-12 border-t border-black/15 pt-8">
+              <Signature
+                role="img"
+                aria-label="Semnătura fondatorului ZECRO"
+                className="w-48 text-[#0F1012] sm:w-56"
+              />
             </div>
           </div>
 
@@ -103,7 +95,14 @@ export default function StudioStatement() {
                 className="pointer-events-none absolute inset-0 text-black/50 [animation:spin_30s_linear_infinite]"
               />
               <div className="flex aspect-square w-full items-center justify-center">
-                <Mark className="w-2/5 text-black/50" />
+                <img
+                  src="/razvan-zetu.webp"
+                  alt="Fondatorul ZECRO"
+                  width={800}
+                  height={800}
+                  loading="lazy"
+                  className="aspect-square w-[68%] rounded-full object-cover"
+                />
               </div>
             </div>
           </div>

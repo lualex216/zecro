@@ -43,14 +43,14 @@ Din *Brand Voice & Story* (Drive, „Branding Map”):
 - **Do:** verbe de acțiune, fapte reale, propoziții scurte, cifre concrete.
 - **Don't:** superlative („cel mai”, „noul etalon”, „liderul incontestabil”), „100%”, titluri senzaționaliste, formulări vagi.
 - Persoana I plural („construim”, „echipa ZECRO”) sau a III-a („ZECRO oferă”). Formularele se adresează cu „tu”.
-- Fără numele fondatorilor pe site; autorul textelor publice = „ZECRO”.
+- Fără numele fondatorilor în textele site-ului; autorul textelor publice = „ZECRO”. **Excepție decisă pe 12 nov. 2026:** în secțiunea „Despre noi” (`StudioStatement`) apar poza fondatorului și semnătura lui scrisă de mână (care conține numele). Alt-ul pozei și eticheta semnăturii rămân fără nume („Fondatorul ZECRO”).
 
 ## 4. Fapte verificate (portofoliu)
 
 - **A.S.P.I.** — club **nou**, construit pe spiritul și tradiția Politehnicii Iași, înscris în Liga 4 (preluarea clubului de juniori Steaua Magică). Nu îl prezenta ca „brandul istoric Politehnica” și nu numi „FC Politehnica Iași” ca partener fără acord formal.
 - **ACSM Cetatea 1932 Suceava** — rebranding siglă, management strategic continuu, **promovare în Liga 2**.
 - **Gloria Ultra** — ZECRO a **preluat proiectul într-o fază incipientă** (nu „fondare”) și l-a condus executiv; proiectul s-a **încheiat** când finanțatorii l-au reorientat spre mini-fotbal. Statusul în studiul de caz nu e „activ”.
-- Rezultate măsurabile acceptate pe site: „L3 → L2 / Promovare Cetatea Suceava”, „3 / Cluburi construite sau reconstruite”.
+- Rezultate acceptate pe site: promovarea Cetatea Suceava în Liga 2 (în studiul de caz). Metricile „L3 → L2” și „3 cluburi construite sau reconstruite” au fost scoase din `StudioStatement` pe 12 nov. 2026 (locul lor l-a luat semnătura); „reconstruite” nu se potrivea cu A.S.P.I., club nou.
 
 ## 5. Blog
 
