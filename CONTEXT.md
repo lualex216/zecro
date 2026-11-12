@@ -1,6 +1,6 @@
 # ZECRO — Context Proiect
 
-Site web pentru **ZECRO S.R.L.**, agenție de management sportiv din România (fotbal). Construit de la zero pornind de la un spec generic de creative studio, apoi rebrandat complet și populat cu conținut real. Ultima actualizare a acestui document: 15 octombrie 2026.
+Site web pentru **ZECRO S.R.L.**, agenție de management sportiv din România (fotbal). Construit de la zero pornind de la un spec generic de creative studio, apoi rebrandat complet și populat cu conținut real. Ultima actualizare a acestui document: 12 noiembrie 2026.
 
 ## Stack tehnic
 
@@ -12,7 +12,7 @@ Site web pentru **ZECRO S.R.L.**, agenție de management sportiv din România (f
 
 Comenzi: `npm run dev` (preview local), `npm run build` (`tsc -b && vite build && vite build --ssr ... && node scripts/prerender.mjs`), `npm run lint` (oxlint).
 
-**Prerender (SEO)**: după build-ul client, `src/entry-server.tsx` (`renderToString(<App path>)`) generează HTML static pentru `/` (în `dist/index.html`) și cele 2 pagini legale (`dist/<cale>.html`, cu title/description/canonical/OG proprii), iar `src/main.tsx` hidratează (`hydrateRoot` dacă `#root` are conținut). `vercel.json` are `cleanUrls: true` (servește `/termeni-si-conditii.html` la `/termeni-si-conditii`) în loc de rewrites. `useMediaQuery` folosește `useSyncExternalStore` cu snapshot de server `false`, ca să nu apară erori de hidratare. Orice componentă nouă trebuie să fie sigură la SSR (fără `window`/`document` la randare, doar în efecte). Verificat doar local (vite preview); **de verificat pe Vercel** că Build Command rulează `npm run build` și că adresele legale răspund fără 404.
+**Prerender (SEO)**: după build-ul client, `src/entry-server.tsx` (`renderToString(<App path>)`) generează HTML static pentru `/` (în `dist/index.html`), paginile legale, articolele publicate, studiile de caz și `404.html` (`dist/<cale>.html`, cu title/description/canonical/OG proprii), iar `src/main.tsx` hidratează (`hydrateRoot` dacă `#root` are conținut). `vercel.json` are `cleanUrls: true` (servește `/termeni-si-conditii.html` la `/termeni-si-conditii`, iar `/x.html` face redirect 308 la `/x`) în loc de rewrites. `useMediaQuery` folosește `useSyncExternalStore` cu snapshot de server `false`, ca să nu apară erori de hidratare. Orice componentă nouă trebuie să fie sigură la SSR (fără `window`/`document` la randare, doar în efecte). **Verificat pe Vercel** (12 nov. 2026, `zecro.vercel.app`, commit `aa9446b`): build-ul rulează `npm run build` și trece, paginile prerandate (home, legale, studii de caz) răspund 200, o rută inexistentă dă 404 cu `404.html`, iar HTML-ul sursă conține `<h1>` și JSON-LD. Pe serverul propriu comportamentul trebuie reverificat (vezi `deploy/README.md`, pasul 6).
 
 Fără router: rutarea e făcută direct pe `window.location.pathname` în `App.tsx` (vezi „Pagini legale"). Fără teste automate — verificarea se face manual: `tsc`, `build`, iar vizual în browser (inclusiv headless cu Chrome + puppeteer-core, instalat în afara repo-ului).
 
@@ -55,7 +55,7 @@ Definită în `src/index.css` (`@theme`):
 
 - `/politica-de-confidentialitate` și `/termeni-si-conditii`, randate de `LegalPage.tsx` (header cu logo, secțiuni numerotate, linkuri automate pe e-mail/URL-uri, titlu/descriere/canonical setate din JS).
 - Conținutul e în `src/data/legal.ts`, datele firmei într-un singur loc, `src/data/company.ts` (denumire, CUI, TVA, nr. Registrul Comerțului, sediu, e-mail, telefon, ANPC, ANSPDCP + `SOCIAL`).
-- Rutare: `window.location.pathname` în `App.tsx`; linkurile din footer sunt `<a href>` obișnuite (încărcare completă). În `vercel.json` există `rewrites` explicite pentru cele două căi → `/index.html`. **De verificat după deploy** că adresele directe nu dau 404 (testat doar în dev).
+- Rutare: `window.location.pathname` în `App.tsx`; linkurile din footer sunt `<a href>` obișnuite (încărcare completă). Adresele directe răspund fără 404 pe Vercel (verificat 12 nov. 2026), prin paginile prerandate și `cleanUrls`, nu prin rewrites.
 - **Numele reprezentantului legal a fost omis intenționat** (decizie: fără numele fondatorilor pe site). Textele sunt redactate pe structura standard GDPR și pe ce face efectiv site-ul (fără cookie-uri, fără analytics, fonturi găzduite local în `public/fonts`) — **necesită revizuire juridică**.
 
 ## Conținut real
@@ -99,7 +99,7 @@ Fișierul local `GEMINI-SYNC.md` (netracked, doar pentru lipit în sesiunea Gemi
 
 - **GitHub**: `https://github.com/lualex216/zecro` (branch `main`).
 - **Hosting final: server propriu** (nginx + Node), cu **Vercel păstrat pentru teste înainte de lansare**. Tot ce e specific serverului e în `deploy/` (vezi `deploy/README.md`): configuri nginx (HTTPS, redirecturi 301, 404 real, compresie, cache, headere), `server/index.ts` (serviciul `/api/contact`, același handler ca `api/contact.ts`), `deploy/deploy.sh` (build + publicare atomică + rollback) și cron-ul de miercuri pentru articolele programate. Configurul nginx și scriptul **nu au fost testate pe un server real** (de rulat `nginx -t` și un deploy de probă).
-- **Vercel (test)**: `zecro.vercel.app`. **Blocaj cunoscut, nerezolvat la ultima verificare**: Framework Preset setat pe Next.js (proiect vechi), cauzând eroare de build. De schimbat manual: Settings → General → Build & Development Settings → Framework Preset → **Vite**, apoi redeploy. `.github/workflows/scheduled-deploy.yml` (Deploy Hook) servește doar Vercel; pe serverul propriu publicarea programată o face cron-ul din `deploy/`.
+- **Vercel (test)**: `zecro.vercel.app`, deploy-uri Production automate la push pe `main`. **Stare verificată pe 12 nov. 2026**: ultimele 3 commituri (`aa5d6d9`, `dfdd5e3`, `aa9446b`) au statusul `success` în GitHub, iar site-ul live răspunde corect (pagini, 404, `/api/contact` → 400 la cerere invalidă). Blocajul vechi cu Framework Preset pe Next.js nu mai e valabil (build-urile trec; setarea în sine nu a fost văzută în dashboard). Neverificat: dacă `RESEND_API_KEY` e setată în Vercel (se vede doar printr-un test real al formularului, care trimite un e-mail la `office@zec.ro`). Blogul de pe Vercel arată articolele programate doar după un build din ziua lor (vezi „Publicare programată"). `.github/workflows/scheduled-deploy.yml` (Deploy Hook) servește doar Vercel; pe serverul propriu publicarea programată o face cron-ul din `deploy/`.
 - Domeniul `zec.ro` e presupus în canonical / OG / sitemap; **conectarea lui (DNS) nu a fost confirmată**. Până la lansare, un mediu de test (Vercel) are canonical către `zec.ro`, deci nu concurează în index.
 
 ## Planificat (nu e implementat)
@@ -121,7 +121,7 @@ Fișierul local `GEMINI-SYNC.md` (netracked, doar pentru lipit în sesiunea Gemi
 
 ## Ce mai rămâne deschis
 
-- Framework Preset greșit pe Vercel și conectarea domeniului `zec.ro` (vezi Deploy).
+- Conectarea domeniului `zec.ro` (DNS; vezi Deploy), secretul `VERCEL_DEPLOY_HOOK_URL` în GitHub (publicarea programată pe Vercel) și verificarea `RESEND_API_KEY` printr-un test real al formularului.
 - **Formulare**: footer + „Începe un proiect" trimit prin `api/contact.ts` (Vercel Function; pe serverul propriu același handler rulează prin `server/index.ts`, cu verificare de Origin, JSON obligatoriu și limită de cereri; Resend, fără dependențe noi) la `office@zec.ro`, cu `reply_to` = e-mailul vizitatorului, honeypot `website`, validare și escape HTML; client în `src/lib/sendContact.ts`, cu stări „Se trimite..." / eroare (fallback `mailto:`). Testat doar cu Resend simulat. **De făcut**: cont Resend + domeniul `zec.ro` verificat (DNS), `RESEND_API_KEY` în Vercel (Production + Preview; opțional `CONTACT_FROM`, `CONTACT_TO`), test real după deploy. În `npm run dev`, `/api` nu există (trimiterea dă eroare); local se folosește `vercel dev`. Politica de confidențialitate trebuie completată cu Resend ca procesator.
 - `STATUS` e hardcodat „ACTIV" pentru toate proiectele în `CaseStudyModal`; la Gloria Ultra ar trebui „inactiv" (în Figma era). Necesită câmp `status` per proiect.
 - `og-image.jpg`: statuia acoperă literele din mijlocul wordmark-ului („ZECRO" se citește „ZEC_O"); de refăcut dacă se vrea numele brandului lizibil în preview-uri.
