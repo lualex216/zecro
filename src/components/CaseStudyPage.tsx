@@ -3,7 +3,9 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
 import CustomCursor from "./CustomCursor";
 import { CaseStudyDetails } from "./CaseStudyBody";
+import RelatedLinks from "./RelatedLinks";
 import { projects, projectPath, type Project } from "../data/projects";
+import { POSTS, postPath } from "../data/posts";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { COMPANY } from "../data/company";
 
@@ -75,28 +77,15 @@ export default function CaseStudyPage({ project }: { project: Project }) {
           </div>
         </article>
 
-        {others.length > 0 && (
-          <section className="border-t border-white/10 px-4 py-16 sm:px-8">
-            <div className="mx-auto max-w-3xl">
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-white/50">
-                / ALTE STUDII DE CAZ
-              </span>
-              <ul className="mt-6 flex flex-col divide-y divide-white/10 border-y border-white/10">
-                {others.map((p) => (
-                  <li key={p.id}>
-                    <a
-                      href={projectPath(p)}
-                      className="flex items-center justify-between gap-4 py-4 transition-colors hover:text-accent"
-                    >
-                      <span className="font-sans text-lg font-bold uppercase leading-snug">{p.client}</span>
-                      <ArrowUpRight size={16} className="shrink-0" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        )}
+        <RelatedLinks
+          label="ALTE STUDII DE CAZ"
+          uppercase
+          items={others.map((p) => ({ href: projectPath(p), title: p.client }))}
+        />
+        <RelatedLinks
+          label="DIN BLOG"
+          items={POSTS.slice(0, 3).map((p) => ({ href: postPath(p), title: p.title }))}
+        />
       </main>
     </div>
   );

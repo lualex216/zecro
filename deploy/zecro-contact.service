@@ -1,0 +1,28 @@
+# Serviciul pentru formularele de contact. Instalare: /etc/systemd/system/zecro-contact.service
+# apoi: sudo systemctl daemon-reload && sudo systemctl enable --now zecro-contact
+[Unit]
+Description=ZECRO contact form service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=zecro
+Group=zecro
+WorkingDirectory=/var/www/zecro/repo
+EnvironmentFile=/etc/zecro/contact.env
+# Verifică calea cu `which node` (Node 24+, TypeScript nativ).
+ExecStart=/usr/bin/node server/index.ts
+Restart=always
+RestartSec=3
+
+# Restricții de siguranță.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target

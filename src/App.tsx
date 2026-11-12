@@ -16,6 +16,7 @@ import LegalPage from "./components/LegalPage";
 import ArticleModal from "./components/ArticleModal";
 import ArticlePage from "./components/ArticlePage";
 import CaseStudyPage from "./components/CaseStudyPage";
+import NotFoundPage from "./components/NotFoundPage";
 import { LEGAL_DOCUMENTS } from "./data/legal";
 import { findProject, projectPath, type Project } from "./data/projects";
 import { findPost, postDocumentTitle, postPath, type Post } from "./data/posts";
@@ -98,10 +99,11 @@ export default function App({ path: initialPath }: { path?: string }) {
   const path = (initialPath ?? window.location.pathname)
     .replace(/\.html$/, "")
     .replace(/\/+$/, "") || "/";
+  if (path === "/" || path === "/index") return <HomePage />;
   const legalDoc = LEGAL_BY_PATH[path];
   if (legalDoc) return <LegalPage doc={legalDoc} />;
   const post = findPost(path);
   if (post) return <ArticlePage post={post} />;
   const project = findProject(path);
-  return project ? <CaseStudyPage project={project} /> : <HomePage />;
+  return project ? <CaseStudyPage project={project} /> : <NotFoundPage />;
 }

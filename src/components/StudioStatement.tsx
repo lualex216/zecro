@@ -1,10 +1,7 @@
 import { Fragment, useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { loadGsap } from "../lib/loadGsap";
 import Signature from "./Signature";
 import CircleText from "./CircleText";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const MANIFESTO =
   "CONSTRUIM UN SISTEM SOLID ÎN FOTBALUL ROMÂNESC, UNDE TRANSPARENȚA, PERFORMANȚA ADMINISTRATIVĂ ȘI DEZVOLTAREA PE TERMEN LUNG CONVERG ÎN REZULTATE CONCRETE.";
@@ -24,21 +21,29 @@ export default function StudioStatement() {
     const words = manifestoRef.current?.querySelectorAll(".manifesto-word");
     if (!words || !sectionRef.current) return;
 
-    const ctx = gsap.context(() => {
-      gsap.to(words, {
-        opacity: 1,
-        stagger: 0.02,
-        ease: "none",
-        scrollTrigger: {
-          trigger: manifestoRef.current,
-          start: "top 85%",
-          end: "bottom 55%",
-          scrub: 0.5,
-        },
-      });
-    }, sectionRef);
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
+    loadGsap().then((gsap) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        gsap.to(words, {
+          opacity: 1,
+          stagger: 0.02,
+          ease: "none",
+          scrollTrigger: {
+            trigger: manifestoRef.current,
+            start: "top 85%",
+            end: "bottom 55%",
+            scrub: 0.5,
+          },
+        });
+      }, sectionRef);
+    });
 
-    return () => ctx.revert();
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (

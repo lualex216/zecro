@@ -1,9 +1,25 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
 export default function HeroSection() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
+
+  // Videoclipul (~1,7 MB) pornește după încărcarea paginii: până atunci se vede poster-ul
+  // (preîncărcat), iar JS-ul, fonturile și imaginile nu concurează cu el pentru bandă. Cu
+  // „Economizor de date” activ, rămâne doar poster-ul.
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    if (connection?.saveData) return;
+    const start = () => setVideoReady(true);
+    if (document.readyState === "complete") {
+      const id = setTimeout(start, 0);
+      return () => clearTimeout(id);
+    }
+    window.addEventListener("load", start, { once: true });
+    return () => window.removeEventListener("load", start);
+  }, []);
 
   useLayoutEffect(() => {
     const el = headlineRef.current;
@@ -35,7 +51,7 @@ export default function HeroSection() {
       className="relative flex h-[100svh] min-h-[640px] w-full flex-col overflow-hidden bg-obsidian"
     >
       <motion.video
-        src="/hero.mp4"
+        src={videoReady ? "/hero.mp4" : undefined}
         poster="/hero.jpg"
         autoPlay
         muted

@@ -72,7 +72,7 @@ Hero (imagine, titlu, descriere, taguri, client / implicare / status) → **Cont
 
 - Fiecare pilon: `heading`, `description`, `items[]`.
 - **Galeria hibridă**: `GalleryItem` = `{ type: "wide", image }` (16:9, lățime completă) sau `{ type: "squares", images: [3] }` (rând de 3 pătrate), fiecare imagine cu `src` + **`alt` descriptiv**. Număr variabil per proiect (A.S.P.I. 3 wide + 2 rânduri, Cetatea 4 + 1, Gloria Ultra 4 + 2). Gap 16px, `loading="lazy"`.
-- **Imagini galerie**: `public/projects/<id>/<nume-seo>.jpg` (ex. `esarfa-aspi.jpg`), 26 de fișiere, **wide 1600×900, pătrat 800×800**, JPG ~80–85%. Cover-uri: `public/projects/<id>.jpg` (JPG ~80%, 1600 px lățime; PNG-urile de 2,5 MB au fost înlocuite).
+- **Imagini galerie**: `public/projects/<id>/<nume-seo>.webp` (ex. `esarfa-aspi.webp`), **wide 1600×900, pătrat 800×800**. Cover-uri: `public/projects/<id>.webp` (1600 px lățime) și `public/projects/<id>-og.jpg` (1200×630, pentru share). Originalele `.jpg` au fost șterse pe 12 nov. 2026 (rămân în istoricul git).
 - **Neincluse intenționat**: parteneriate de echipament cu nume de branduri (Adidas, JAKO, Joma — apar doar în documente Gemini, neconfirmate) și rezultate cu cifre.
 
 ## SEO și securitate
@@ -80,7 +80,11 @@ Hero (imagine, titlu, descriere, taguri, client / implicare / status) → **Cont
 - `index.html`: title „ZECRO — Agenție de management sportiv în fotbalul românesc", meta description (~160 caractere), canonical (`https://zec.ro/`), Open Graph + Twitter Card, theme-color, JSON-LD `ProfessionalService` (nume, `legalName`, e-mail, telefon, `vatID`, `contactPoint`, adresă doar la nivel de localitate — **fără stradă**, sediul fiind la bloc/apartament; `sameAs` Facebook/LinkedIn). `og-image.jpg` 2400×1260 în `public/`. **Favicon-uri**: `favicon.svg` (sursa) + `favicon.ico` (16/32/48), `icon-192.png`, `icon-512.png` (logo din JSON-LD), `apple-touch-icon.png` 180, toate cu marca pe `#0E0E0D` și margini libere (decupaj în cerc la Google); `site.webmanifest` în `public/`. Titlurile cu efect (manifest, „Viziunea evoluează…", typing din ParallaxCallout) au textul complet în HTML-ul prerandat: cuvintele sunt separate prin spații reale, iar typing-ul e `aria-hidden` peste un `sr-only` cu toate frazele.
 - `public/robots.txt`, `public/sitemap.xml` (home + cele 2 pagini legale, cu `lastmod` scris de mână — **de actualizat** când se schimbă conținutul paginilor).
 - Alt text pe toate imaginile (exceptând fundalul decorativ din ParallaxCallout).
-- `vercel.json`: headere de bază (`X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`) + rewrites pentru paginile legale.
+- `vercel.json`: `cleanUrls` + headere de bază (`X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`). Pe serverul propriu aceleași reguli sunt în `deploy/nginx/`.
+- **404**: `dist/404.html` e prerandat de `scripts/prerender.mjs` (`NotFoundPage.tsx`, `noindex`, fără canonical/JSON-LD); Vercel și nginx îl servesc cu status 404 pentru orice rută inexistentă (inclusiv un articol nepublicat). `App.tsx` arată `NotFoundPage` și pe client pentru orice rută necunoscută. **Nu se configurează niciodată fallback la `index.html`** (soft 404).
+- **Date structurate**: `index.html` are `ProfessionalService` (cu `foundingDate: "2024"`) + `WebSite`; articolele și studiile de caz primesc în plus `Article` / `CreativeWork` și `BreadcrumbList` (prerender). Logo-ul din JSON-LD e `icon-512.png` (Google nu acceptă SVG).
+- **Imaginea de share** `og-image.jpg` (1200×630) e compusă din `hero.jpg` (statuia) + wordmark-ul; recompunerea nu se face din Figma, ci cu un script PIL din sesiunea din 12 nov. 2026 (de refăcut în Figma dacă se vrea altă compoziție).
+- **Performanță**: GSAP + ScrollTrigger se încarcă la cerere (`src/lib/loadGsap.ts`, chunk separat, după hidratare); videoclipul din Hero pornește după `load` (poster preîncărcat cu `fetchpriority="high"`, `index.html`; fără video la „Economizor de date”). JS inițial ≈ 500 kB (159 kB gzip).
 - Verificat: `npm audit` 0 vulnerabilități, fără secrete în cod, fără `target="_blank"` nesigur, fără cookie-uri / localStorage / analytics. **CSP nu e adăugat** (ar necesita testare ca să nu strice Framer Motion sau Google Fonts).
 
 ## Localizare
@@ -94,8 +98,9 @@ Fișierul local `GEMINI-SYNC.md` (netracked, doar pentru lipit în sesiunea Gemi
 ## Deploy
 
 - **GitHub**: `https://github.com/lualex216/zecro` (branch `main`).
-- **Vercel**: `zecro.vercel.app`. **Blocaj cunoscut, nerezolvat la ultima verificare**: Framework Preset setat pe Next.js (proiect vechi), cauzând eroare de build. De schimbat manual: Settings → General → Build & Development Settings → Framework Preset → **Vite**, apoi redeploy.
-- Domeniul `zec.ro` e presupus în canonical / OG / sitemap; **conectarea lui în Vercel nu a fost confirmată**.
+- **Hosting final: server propriu** (nginx + Node), cu **Vercel păstrat pentru teste înainte de lansare**. Tot ce e specific serverului e în `deploy/` (vezi `deploy/README.md`): configuri nginx (HTTPS, redirecturi 301, 404 real, compresie, cache, headere), `server/index.ts` (serviciul `/api/contact`, același handler ca `api/contact.ts`), `deploy/deploy.sh` (build + publicare atomică + rollback) și cron-ul de miercuri pentru articolele programate. Configurul nginx și scriptul **nu au fost testate pe un server real** (de rulat `nginx -t` și un deploy de probă).
+- **Vercel (test)**: `zecro.vercel.app`. **Blocaj cunoscut, nerezolvat la ultima verificare**: Framework Preset setat pe Next.js (proiect vechi), cauzând eroare de build. De schimbat manual: Settings → General → Build & Development Settings → Framework Preset → **Vite**, apoi redeploy. `.github/workflows/scheduled-deploy.yml` (Deploy Hook) servește doar Vercel; pe serverul propriu publicarea programată o face cron-ul din `deploy/`.
+- Domeniul `zec.ro` e presupus în canonical / OG / sitemap; **conectarea lui (DNS) nu a fost confirmată**. Până la lansare, un mediu de test (Vercel) are canonical către `zec.ro`, deci nu concurează în index.
 
 ## Planificat (nu e implementat)
 
@@ -117,7 +122,7 @@ Fișierul local `GEMINI-SYNC.md` (netracked, doar pentru lipit în sesiunea Gemi
 ## Ce mai rămâne deschis
 
 - Framework Preset greșit pe Vercel și conectarea domeniului `zec.ro` (vezi Deploy).
-- **Formulare**: footer + „Începe un proiect" trimit prin `api/contact.ts` (Vercel Function, Resend, fără dependențe noi) la `office@zec.ro`, cu `reply_to` = e-mailul vizitatorului, honeypot `website`, validare și escape HTML; client în `src/lib/sendContact.ts`, cu stări „Se trimite..." / eroare (fallback `mailto:`). Testat doar cu Resend simulat. **De făcut**: cont Resend + domeniul `zec.ro` verificat (DNS), `RESEND_API_KEY` în Vercel (Production + Preview; opțional `CONTACT_FROM`, `CONTACT_TO`), test real după deploy. În `npm run dev`, `/api` nu există (trimiterea dă eroare); local se folosește `vercel dev`. Politica de confidențialitate trebuie completată cu Resend ca procesator.
+- **Formulare**: footer + „Începe un proiect" trimit prin `api/contact.ts` (Vercel Function; pe serverul propriu același handler rulează prin `server/index.ts`, cu verificare de Origin, JSON obligatoriu și limită de cereri; Resend, fără dependențe noi) la `office@zec.ro`, cu `reply_to` = e-mailul vizitatorului, honeypot `website`, validare și escape HTML; client în `src/lib/sendContact.ts`, cu stări „Se trimite..." / eroare (fallback `mailto:`). Testat doar cu Resend simulat. **De făcut**: cont Resend + domeniul `zec.ro` verificat (DNS), `RESEND_API_KEY` în Vercel (Production + Preview; opțional `CONTACT_FROM`, `CONTACT_TO`), test real după deploy. În `npm run dev`, `/api` nu există (trimiterea dă eroare); local se folosește `vercel dev`. Politica de confidențialitate trebuie completată cu Resend ca procesator.
 - `STATUS` e hardcodat „ACTIV" pentru toate proiectele în `CaseStudyModal`; la Gloria Ultra ar trebui „inactiv" (în Figma era). Necesită câmp `status` per proiect.
 - `og-image.jpg`: statuia acoperă literele din mijlocul wordmark-ului („ZECRO" se citește „ZEC_O"); de refăcut dacă se vrea numele brandului lizibil în preview-uri.
 - Perioadele și orașul exact (Gloria Ultra: Dorohoi sau Botoșani?) nu sunt pe site; apar doar în textele pentru Facebook/LinkedIn.

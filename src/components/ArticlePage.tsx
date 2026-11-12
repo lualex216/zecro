@@ -3,7 +3,9 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
 import CustomCursor from "./CustomCursor";
 import ArticleBody from "./ArticleBody";
+import RelatedLinks from "./RelatedLinks";
 import { POSTS, formatPostDate, postPath, readingMinutes, type Post } from "../data/posts";
+import { projects, projectPath } from "../data/projects";
 import { COMPANY } from "../data/company";
 
 // Pagina de sine stătătoare a unui articol (/blog/<slug>): linkul care se partajează.
@@ -73,28 +75,15 @@ export default function ArticlePage({ post }: { post: Post }) {
           </div>
         </article>
 
-        {others.length > 0 && (
-          <section className="border-t border-white/10 px-4 py-16 sm:px-8">
-            <div className="mx-auto max-w-3xl">
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-white/50">
-                / CITEȘTE ȘI
-              </span>
-              <ul className="mt-6 flex flex-col divide-y divide-white/10 border-y border-white/10">
-                {others.map((p) => (
-                  <li key={p.slug}>
-                    <a
-                      href={postPath(p)}
-                      className="flex items-center justify-between gap-4 py-4 transition-colors hover:text-accent"
-                    >
-                      <span className="font-sans text-lg font-bold leading-snug">{p.title}</span>
-                      <ArrowUpRight size={16} className="shrink-0" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        )}
+        <RelatedLinks
+          label="CITEȘTE ȘI"
+          items={others.map((p) => ({ href: postPath(p), title: p.title }))}
+        />
+        <RelatedLinks
+          label="DIN PORTOFOLIU"
+          uppercase
+          items={projects.map((p) => ({ href: projectPath(p), title: `${p.client} — studiu de caz` }))}
+        />
       </main>
     </div>
   );

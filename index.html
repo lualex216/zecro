@@ -7,6 +7,7 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href="/hero.jpg" as="image" fetchpriority="high" />
     <link rel="preload" href="/fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/geist-latin-ext-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,6 +47,7 @@
         "@id": "https://zec.ro/#organization",
         "name": "ZECRO",
         "legalName": "ZECRO S.R.L.",
+        "foundingDate": "2024",
         "url": "https://zec.ro/",
         "email": "office@zec.ro",
         "telephone": "+40773330980",
@@ -72,6 +74,18 @@
           "https://facebook.com/zecro.agency",
           "https://linkedin.com/company/zecro.agency"
         ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://zec.ro/#website",
+        "url": "https://zec.ro/",
+        "name": "ZECRO",
+        "inLanguage": "ro",
+        "publisher": { "@id": "https://zec.ro/#organization" }
       }
     </script>
   </head>

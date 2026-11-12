@@ -1,0 +1,6 @@
+# Publicarea programată a articolelor de blog: un articol apare la primul build de după data lui,
+# iar datele sunt miercuri (src/data/posts/schedule.json). Rulează miercuri la 00:10 UTC
+# (02:10 ora României), după miezul nopții de miercuri.
+# Instalare: /etc/cron.d/zecro-publish (utilizatorul `zecro` rulează comanda).
+CRON_TZ=UTC
+10 0 * * 3 zecro /var/www/zecro/repo/deploy/deploy.sh >> /var/log/zecro/deploy.log 2>&1

@@ -1,13 +1,10 @@
 import { Fragment, useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { loadGsap } from "../lib/loadGsap";
 import ServiceIcon from "./ServiceIcon";
 import laptopFootballSvg from "../assets/services/laptop-football.svg?raw";
 import strategySvg from "../assets/services/strategy.svg?raw";
 import bannerSvg from "../assets/services/banner.svg?raw";
 import clubInsigniaSvg from "../assets/services/club-insignia.svg?raw";
-
-gsap.registerPlugin(ScrollTrigger);
 
 type Card = {
   num: string;
@@ -90,20 +87,28 @@ export default function Capabilities() {
   useEffect(() => {
     const words = manifestoRef.current?.querySelectorAll(".manifesto-word");
     if (!words) return;
-    const ctx = gsap.context(() => {
-      gsap.to(words, {
-        opacity: 1,
-        stagger: 0.02,
-        ease: "none",
-        scrollTrigger: {
-          trigger: manifestoRef.current,
-          start: "top 85%",
-          end: "bottom 55%",
-          scrub: 0.5,
-        },
-      });
-    }, sectionRef);
-    return () => ctx.revert();
+    let cancelled = false;
+    let ctx: { revert: () => void } | undefined;
+    loadGsap().then((gsap) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        gsap.to(words, {
+          opacity: 1,
+          stagger: 0.02,
+          ease: "none",
+          scrollTrigger: {
+            trigger: manifestoRef.current,
+            start: "top 85%",
+            end: "bottom 55%",
+            scrub: 0.5,
+          },
+        });
+      }, sectionRef);
+    });
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (

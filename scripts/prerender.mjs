@@ -13,7 +13,11 @@ const { render, legalPages, blogPages, projectPages, latestPostDate } = await im
 const escapeAttr = (s) =>
   s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
+// Poster-ul videoclipului din Hero e preîncărcat doar pe pagina principală.
+const stripHeroPreload = (html) => html.replace(/\s*<link rel="preload" href="\/hero\.jpg"[^>]*>/, "");
+
 function withHead(html, page) {
+  html = stripHeroPreload(html);
   const url = `${SITE}${page.path}`;
   const title = escapeAttr(page.title);
   const description = escapeAttr(page.description);
@@ -61,6 +65,18 @@ function withHead(html, page) {
         publisher: { "@id": `${SITE}/#organization` },
       })}</script>`,
     );
+    const [section, sectionUrl] = isArticle ? ["Blog", `${SITE}/#blog`] : ["Portofoliu", `${SITE}/#work`];
+    extra.push(
+      `<script type="application/ld+json">${JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Acasă", item: `${SITE}/` },
+          { "@type": "ListItem", position: 2, name: section, item: sectionUrl },
+          { "@type": "ListItem", position: 3, name: page.headline, item: url },
+        ],
+      })}</script>`,
+    );
     html = html.replace("</head>", `    ${extra.join("\n    ")}\n  </head>`);
   }
   return html;
@@ -85,6 +101,21 @@ for (const page of [...blogPages, ...projectPages]) {
   console.log(`prerendered ${page.path}`);
 }
 console.log("prerendered /");
+
+// Pagina 404 (serverul o trimite cu status 404): fără canonical și fără date structurate, cu noindex.
+{
+  const title = "Pagina nu a fost găsită — ZECRO";
+  const description = "Pagina căutată nu există sau nu a fost încă publicată.";
+  let html = stripHeroPreload(template)
+    .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+    .replace(/(<meta\s+name="description"\s+content=")[^"]*(")/, `$1${description}$2`)
+    .replace(/\s*<link rel="canonical"[^>]*>/, "")
+    .replace(/\s*<meta\s+(?:property="og:[^"]*"|name="twitter:[^"]*")\s+content="[^"]*"\s*\/>/g, "")
+    .replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/g, "")
+    .replace("</head>", `    <meta name="robots" content="noindex" />\n  </head>`);
+  await writeFile("dist/404.html", inject(html, render("/404")));
+  console.log("prerendered /404");
+}
 
 // Sitemap: adaugă articolele publicate și actualizează lastmod-ul paginii principale.
 let sitemap = await readFile("dist/sitemap.xml", "utf8");

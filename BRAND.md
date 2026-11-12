@@ -12,6 +12,7 @@ Ultima actualizare: 5 noiembrie 2026.
 - **ZECRO nu prestează servicii de agent de fotbal**: nu intermediază transferuri și nu negociază contracte în numele jucătorilor sau al cluburilor. Nu scrie niciodată „reprezentare jucători”, „agenți licențiați FIFA” sau „licență FIFA” ca serviciu ZECRO.
 - Mesaj central: **„Câștigăm meciul birourilor”** — performanța pe teren depinde de ordinea din birouri.
 - Slogan: **„Alături de fotbalul românesc spre un viitor mai bun.”**
+- **Anul înființării: 2024** (decizie 12 nov. 2026): „EST. 2024” pe site, `foundingDate: "2024"` în JSON-LD. Numărul de la Registrul Comerțului (J2025…) e doar data înmatriculării, nu o contradicție de comunicat.
 - Misiune (canonică, din Brand Core): „A revoluționa dezvoltarea fotbalului în România, modelând viitorul sportului prin cultivarea talentelor, promovarea creșterii și oferind oportunități reale pentru jucători de a excela în fiecare etapă a călătoriei lor.”
 
 ## 2. Cei 4 piloni
@@ -60,7 +61,6 @@ Din *Brand Voice & Story* (Drive, „Branding Map”):
 
 ## 6. De rezolvat
 
-- **„Est. 2024”** (Hero, StudioStatement, carusel): numărul de la Registrul Comerțului (J2025…) indică 2025 — de confirmat și folosit consecvent.
 - **Termeni și condiții:** textul „ZECRO nu prestează servicii de agent de fotbal…” — de verificat de un avocat.
 - **Ordinea pilonilor** în `StudioStatement.tsx` (Football Intelligence e primul) diferă de ordinea canonică de mai sus.
 - **Eticheta cardului 03** e „MULTI CLUB HERITAGE” (fără cratimă) — de aliniat la „MULTI-CLUB HERITAGE”.
