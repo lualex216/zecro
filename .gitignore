@@ -23,3 +23,6 @@ brag-output
 *.njsproj
 *.sln
 *.sw?
+
+# Fișiere de lucru pentru Google Business Profile (nu fac parte din site)
+google-business/
