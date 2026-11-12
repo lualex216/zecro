@@ -79,7 +79,10 @@ export default function ParallaxCallout({ onOpenModal }: { onOpenModal: () => vo
           className="flex h-[3.15em] max-w-5xl items-end justify-center font-sans font-bold uppercase leading-[0.95] tracking-tighter text-white"
           style={{ fontSize: "clamp(2.25rem, 6vw, 5.5rem)" }}
         >
-          <span>
+          {/* Textul complet rămâne în titlu (prerandat, citit de crawlere și cititoare de ecran);
+              efectul de typing e doar vizual. */}
+          <span className="sr-only">{PHRASES.join(" ")}</span>
+          <span aria-hidden="true">
             {typed}
             <span className="animate-blink text-accent">|</span>
           </span>

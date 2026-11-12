@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ServiceIcon from "./ServiceIcon";
@@ -121,9 +121,9 @@ export default function Capabilities() {
           className="max-w-4xl text-3xl font-bold uppercase leading-[1.15] tracking-tight text-white sm:text-5xl md:text-6xl"
         >
           {MANIFESTO.split(" ").map((word, i) => (
-            <span key={i} className="manifesto-word mr-[0.28em] inline-block">
-              {word}
-            </span>
+            <Fragment key={i}>
+              <span className="manifesto-word inline-block">{word}</span>{" "}
+            </Fragment>
           ))}
         </h2>
       </div>

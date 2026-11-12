@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Signature from "./Signature";
@@ -58,9 +58,9 @@ export default function StudioStatement() {
           className="max-w-5xl text-3xl font-bold uppercase leading-[1.15] tracking-tight sm:text-5xl md:text-6xl"
         >
           {MANIFESTO.split(" ").map((word, i) => (
-            <span key={i} className="manifesto-word mr-[0.28em] inline-block">
-              {word}
-            </span>
+            <Fragment key={i}>
+              <span className="manifesto-word inline-block">{word}</span>{" "}
+            </Fragment>
           ))}
         </h2>
 
