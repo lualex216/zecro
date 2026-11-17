@@ -17,4 +17,5 @@ export const COMPANY = {
 export const SOCIAL = [
   { label: "Facebook", href: "https://facebook.com/zecro.agency" },
   { label: "LinkedIn", href: "https://linkedin.com/company/zecro.agency" },
+  { label: "Instagram", href: "https://instagram.com/zecro.agency/" },
 ] as const;
