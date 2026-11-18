@@ -62,7 +62,7 @@ Data publicării articolelor vine din `src/data/posts/schedule.json` (miercuri);
 curl -sI http://zec.ro/ | head -3                         # 301 -> https://zec.ro/
 curl -sI https://www.zec.ro/ | head -3                    # 301 -> https://zec.ro/
 curl -sI https://zec.ro/ | grep -i "content-encoding\|cache-control\|strict-transport"
-curl -sI https://zec.ro/blog/ghidul-tanarului-fotbalist   # 404 până la 25 nov.
+curl -sI https://zec.ro/blog/ghidul-tanarului-fotbalist   # 404 până la 2 dec.
 curl -sI https://zec.ro/termeni-si-conditii.html          # 301 -> /termeni-si-conditii
 curl -sI https://zec.ro/assets/ | head -1
 curl -s  https://zec.ro/robots.txt https://zec.ro/sitemap.xml | head
