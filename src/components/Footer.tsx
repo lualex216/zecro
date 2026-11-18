@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Logo from "./Logo";
 import { sendContact } from "../lib/sendContact";
@@ -14,6 +14,7 @@ const PROJECT_TYPES = [
 ];
 
 export default function Footer() {
+  const uid = useId();
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(false);
@@ -78,10 +79,12 @@ export default function Footer() {
             <form onSubmit={handleSubmit} className="relative flex flex-col gap-6">
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div className="flex flex-col gap-2">
-                  <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                  <label htmlFor={`${uid}-name`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                     Nume
                   </label>
                   <input
+                    id={`${uid}-name`}
+                    autoComplete="name"
                     required
                     name="name"
                     maxLength={120}
@@ -91,10 +94,12 @@ export default function Footer() {
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                  <label htmlFor={`${uid}-email`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                     Email
                   </label>
                   <input
+                    id={`${uid}-email`}
+                    autoComplete="email"
                     required
                     name="email"
                     maxLength={200}
@@ -106,10 +111,12 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                <label htmlFor={`${uid}-club`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                   Club / Organizație
                 </label>
                 <input
+                  id={`${uid}-club`}
+                  autoComplete="organization"
                   name="club"
                   maxLength={160}
                   type="text"
@@ -119,10 +126,11 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                <label htmlFor={`${uid}-type`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                   Tip solicitare
                 </label>
                 <select
+                  id={`${uid}-type`}
                   name="type"
                   defaultValue="One Task Only"
                   className="border-b border-white/20 bg-transparent py-2 text-white outline-none focus:border-accent [&>option]:bg-obsidian-3"
@@ -136,10 +144,11 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                <label htmlFor={`${uid}-message`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                   Mesaj
                 </label>
                 <textarea
+                  id={`${uid}-message`}
                   required
                   name="message"
                   maxLength={5000}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 import { sendContact } from "../lib/sendContact";
@@ -13,6 +13,7 @@ export default function ProjectModal({
   open: boolean;
   onClose: () => void;
 }) {
+  const uid = useId();
   const [submitted, setSubmitted] = useState(false);
   const [budget, setBudget] = useState(BUDGETS[0]);
   const [type, setType] = useState("One Task Only");
@@ -112,10 +113,12 @@ export default function ProjectModal({
                 </h2>
 
                 <div className="flex flex-col gap-2">
-                  <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                  <label htmlFor={`${uid}-name`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                     Nume
                   </label>
                   <input
+                    id={`${uid}-name`}
+                    autoComplete="name"
                     required
                     name="name"
                     maxLength={120}
@@ -126,10 +129,12 @@ export default function ProjectModal({
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                  <label htmlFor={`${uid}-email`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                     Email
                   </label>
                   <input
+                    id={`${uid}-email`}
+                    autoComplete="email"
                     required
                     name="email"
                     maxLength={200}
@@ -140,10 +145,10 @@ export default function ProjectModal({
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                  <span id={`${uid}-budget`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                     Interval de buget
-                  </label>
-                  <div className="flex flex-wrap gap-2">
+                  </span>
+                  <div role="group" aria-labelledby={`${uid}-budget`} className="flex flex-wrap gap-2">
                     {BUDGETS.map((b) => (
                       <button
                         type="button"
@@ -162,10 +167,10 @@ export default function ProjectModal({
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                  <span id={`${uid}-type`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                     Tip proiect
-                  </label>
-                  <div className="flex flex-wrap gap-2">
+                  </span>
+                  <div role="group" aria-labelledby={`${uid}-type`} className="flex flex-wrap gap-2">
                     {TYPES.map((t) => (
                       <button
                         type="button"
@@ -184,10 +189,11 @@ export default function ProjectModal({
                 </div>
 
                 <div className="flex flex-1 flex-col gap-2">
-                  <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
+                  <label htmlFor={`${uid}-message`} className="font-mono text-[10px] font-bold uppercase tracking-widest text-white/50">
                     Mesaj
                   </label>
                   <textarea
+                    id={`${uid}-message`}
                     required
                     name="message"
                     maxLength={5000}

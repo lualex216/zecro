@@ -152,7 +152,7 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
           <button
             className="text-white"
             onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
+            aria-label="Deschide meniul"
           >
             <Menu size={22} />
           </button>
@@ -169,7 +169,7 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
           >
             <div className="flex items-center justify-between">
               <Logo className="w-32 text-white" />
-              <button onClick={() => setMobileOpen(false)} aria-label="Close menu">
+              <button onClick={() => setMobileOpen(false)} aria-label="Închide meniul">
                 <X className="text-white" size={26} />
               </button>
             </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 
@@ -36,6 +36,7 @@ const ITEMS = [
 ];
 
 export default function FAQ() {
+  const uid = useId();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -58,6 +59,9 @@ export default function FAQ() {
             return (
               <div key={item.question} className="border-b border-black/15">
                 <button
+                  type="button"
+                  aria-expanded={open}
+                  aria-controls={`${uid}-panel-${i}`}
                   onClick={() => setOpenIndex(open ? null : i)}
                   className="flex w-full items-center justify-between gap-6 py-6 text-left"
                   data-cursor="EXTINDE"
@@ -82,6 +86,7 @@ export default function FAQ() {
                 {/* Răspunsurile rămân mereu în DOM (deci și în HTML-ul prerandat, pentru SEO);
                     cele închise sunt doar restrânse vizual și ascunse pentru cititoarele de ecran. */}
                 <motion.div
+                  id={`${uid}-panel-${i}`}
                   initial={false}
                   animate={open ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
